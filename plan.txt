@@ -1,5 +1,5 @@
 1. Installasjon
-    - installer postgreSQL(automatiseres?)
+    - installer postgreSQL
     - opprett database med passende navn.
     - bruke SQL-kommandolinjeverktøyet psql, for å koble til databasen.
 
