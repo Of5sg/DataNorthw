@@ -1,1 +1,2 @@
-RUN echo docker pull postgres:latest
+# FROM postgres:latest
+# RUN pull postgres:latest

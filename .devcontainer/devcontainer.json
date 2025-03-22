@@ -1,4 +1,23 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/javascript-node",
-  "features": {}
+  "build": {
+  "dockerfile": "./Dockerfile",
+  "context": "."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git": {
+
+    },
+    "ghcr.io/devcontainers/features/node": {
+
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker": {
+
+    },
+    "ghcr.io/devcontainers/features/git-lfs": {
+
+    },
+    "ghcr.io/devcontainers/features/github-cli": {
+
+    }
+  }
 }
