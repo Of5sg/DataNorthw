@@ -1,21 +1,8 @@
 {
-  "build": {
+  "image": "https://github.com/devcontainers/images/tree/main/src/javascript-node:2",
+  "Build": {
   "dockerfile": "./Dockerfile",
   "context": "."
   },
-  "features": {
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
-      "ppa": "false"
-    },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "version": "latest"
-    },
-    "ghcr.io/itsmechlark/features/postgresql:1": {
-      "version": "latest"
-    }
-  }
+  "features": {}
 }
