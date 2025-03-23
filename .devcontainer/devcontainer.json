@@ -4,5 +4,6 @@
   "dockerfile": "./Dockerfile",
   "context": "."
   },
+  "args": { "VARIANT": "ubuntu-22.04" },
   "features": {}
 }
