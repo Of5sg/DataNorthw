@@ -1,4 +1,7 @@
 {
+  "name": "postgres_Data",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {}
+  "features": {},
+  "forwardPorts": [5432],
+  "postCreateCommand": "docker-compose up -d"
 }
