@@ -3,5 +3,5 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {},
   "forwardPorts": [5432],
-  "postCreateCommand": "apt-get update && apt-get install -y docker-compose && docker-compose up -d"
+  "postCreateCommand": "docker-compose up -d"
 }
