@@ -1,12 +1,15 @@
 bruker: bruker
 passord: henteData
 
+postgres:
 \du     - liste over alle brukere
 \l      - liste over databaser
 \c      - bytte database
 
 \dt     - list tables
 
+docker:
+docker ps -a
 
 CREATE ROLE bruker WITH LOGIN PASSWORD 'henteData';
 ALTER ROLE bruker CREATEDB;
@@ -17,3 +20,11 @@ docker exec -it post_Data(<--container) psql testdb(<--database) -U bruker(<--br
 cat ./northwind.sql | docker exec -i post_Data(<-container) psql -U testbruker(<-bruker med riktige privilegier) -d testdb(<-databasen)
 
 docker exec -it post_Data psql -h localhost -p 5432 testdb -U bruker -W             ???
+
+
+docker ps
+
+docker inspect <navnet på containeren>
+
+docker inspect <navnet på containeren> | grep "IPAddress"
+

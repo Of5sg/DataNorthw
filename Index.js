@@ -5,15 +5,21 @@ const { Client } = pg;
 const client =  new Client({
     user: "testbruker",
     password: "testpassord",
-    host: "localhost",
+    host: "172.17.0.2",
     port: 5432,
     database: "testdb"
 });
 
 await client.connect();
 
-const resultat = client.query('SELECT * FROM orders;');
+const query = "SELECT * FROM customers "
 
-console.log(resultat);
+await client.query("SELECT * FROM customers LIMIT 10;")
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err => {
+        console.log(err);
+    })
 
 await client.end();
