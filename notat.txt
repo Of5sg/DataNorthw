@@ -15,3 +15,5 @@ docker exec -it post_Data(<--container) psql testdb(<--database) -U bruker(<--br
 
 
 cat ./northwind.sql | docker exec -i post_Data(<-container) psql -U testbruker(<-bruker med riktige privilegier) -d testdb(<-databasen)
+
+docker exec -it post_Data psql -h localhost -p 5432 testdb -U bruker -W             ???
