@@ -12,5 +12,7 @@ docker run -d \
 
 sleep 10
 
-curl -O https://raw.githubusercontent.com/pthom/northwind_psql/refs/heads/master/northwind.sql
+docker exec -it post_Data psql testdb -U testbruker
+
+# curl -O https://raw.githubusercontent.com/pthom/northwind_psql/refs/heads/master/northwind.sql
 
