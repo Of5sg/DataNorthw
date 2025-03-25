@@ -28,3 +28,13 @@ docker inspect <navnet på containeren>
 
 docker inspect <navnet på containeren> | grep "IPAddress"
 
+
+postgresql:
+
+SELECT
+FROM
+ORDER
+BY
+LIMIT
+DISTINCT(unngå duplikater)
+SELECT * FROM weather JOIN cities ON city = name;(flere tabeller)

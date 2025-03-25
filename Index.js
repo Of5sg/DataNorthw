@@ -1,5 +1,9 @@
 import pg from "pg";
 
+const postgresIP = process.env.CONTAINER_IP;
+
+// console.log(postgresIP);
+
 const { Client } = pg;
 
 const client =  new Client({
@@ -12,14 +16,14 @@ const client =  new Client({
 
 await client.connect();
 
-const query = "SELECT * FROM customers "
+const query = "SELECT * FROM customers ORDER BY company_name LIMIT 10";
 
-await client.query("SELECT * FROM customers LIMIT 10;")
+await client.query(query)
     .then(res => {
         console.log(res);
     })
     .catch(err => {
         console.log(err);
-    })
+    });
 
 await client.end();
