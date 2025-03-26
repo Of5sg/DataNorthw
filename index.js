@@ -1,5 +1,4 @@
 import pg from "pg";
-import express from "express";
 
 const postgresIP = process.env.CONTAINER_IP;
 
@@ -14,7 +13,6 @@ const pool = new Pool({
     port: 5432,
     database: "testdb"
 });
-
 
 await pool.connect()
 
