@@ -1,4 +1,5 @@
 import pg from "pg";
+import express from "express";
 
 const postgresIP = process.env.CONTAINER_IP;
 
@@ -13,6 +14,22 @@ const pool = new Pool({
     port: 5432,
     database: "testdb"
 });
+
+
+await pool.connect()
+
+const query = "SELECT * FROM customers ORDER BY company_name LIMIT 10";
+
+await pool.query(query)
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+await pool.end();
+
 
 // const { Client } = pg;
 

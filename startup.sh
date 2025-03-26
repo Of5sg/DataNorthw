@@ -18,7 +18,7 @@
 
 # curl -O https://raw.githubusercontent.com/pthom/northwind_psql/refs/heads/master/northwind.sql
 
-docker start post_Data
+docker container start post_Data
 
 # # fikk hjelp med denne
 # CONTAINER_NAME="post_Data"
