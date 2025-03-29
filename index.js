@@ -1,20 +1,26 @@
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 
-
 const prisma = new PrismaClient({
     log: ['info']
 });
 
-async function main(){
-    const shippers = await prisma.shippers.findMany({
+const server = express();
+const port = 3000;
+
+server.get("/", (request, response) => {
+    response.send("hello world");
+});
+
+server.get("/customers", async (request, response) => {
+    response = await prisma.customers.findMany({
         where: {
             shipper_id: {
                 not: 1234,
             }
         }
-    });
-    console.log(shippers);
-}
+    });    
+    response.send(shippers);
+});
 
-main();
+server.listen((error) => {console.error(error)});
