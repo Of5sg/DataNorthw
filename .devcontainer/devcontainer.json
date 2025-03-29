@@ -2,5 +2,5 @@
   "name": "postgres_Data",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {},
-  "forwardPorts": [5432]
+  "forwardPorts": [5432, 3000]
 }

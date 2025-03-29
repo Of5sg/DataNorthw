@@ -26,4 +26,4 @@ docker container start post_Data
 # echo CONTAINER_IP
 # NODE_ENV="CONTAINER_IP=$CONTAINER_IP" node Index.js
 
-# node index.js
+node index.js
