@@ -10,13 +10,13 @@ docker run -d \
     -v postgres_data:/var/lib/postgresql/data \
     postgres:latest
 
+curl -O https://raw.githubusercontent.com/pthom/northwind_psql/refs/heads/master/northwind.sql
+
 sleep 10
 
-cat ./northwind.sql | docker exec -i post_Data psql -U bruker -d testdb
+cat ./northwind.sql | docker exec -i post_Data psql -U testbruker -d testdb
 
 # docker exec -it post_Data psql testdb -U testbruker
-
-# curl -O https://raw.githubusercontent.com/pthom/northwind_psql/refs/heads/master/northwind.sql
 
 docker container start post_Data
 
