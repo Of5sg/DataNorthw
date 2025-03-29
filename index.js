@@ -5,27 +5,22 @@ const prisma = new PrismaClient({
     log: ['info']
 });
 
-const server = express();
+const app = express();
 const port = 3000;
 
-server.use(express.static("public"));
+app.use(express.static("public"));
 
-server.use((req, res) => {
-    res.status(404);
-    res.send(<h1>Error 404, Finner ikke siden</h1>);
-});
-
-server.get("/", (request, response) => {
+app.get("/", (request, response) => {
     
     response.send("hei, vi har for øyeblikket bare customers og suppliers");
 });
 
-server.get("/customers", async (request, response) => {
+app.get("/customers", async (request, response) => {
     const customers = await prisma.customers.findMany();
     response.send(customers);
 });
 
-server.get("/suppliers", async (request, response) => {
+app.get("/suppliers", async (request, response) => {
     const suppliers = await prisma.suppliers.findMany({
         where: {
             company_name: {
@@ -36,9 +31,9 @@ server.get("/suppliers", async (request, response) => {
     response.send(suppliers);
 });
 
-server.use((req, res) => {
+app.use((req, res) => {
     res.status(404);
-    res.send("404, Finner ikke siden");
+    res.send(`<h1>Error 404, Finner ikke siden</h1>`);
 });
 
-server.listen(port, (error) => {console.error(error)});
+app.listen(port, (error) => {console.error(error)});
