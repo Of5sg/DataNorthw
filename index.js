@@ -31,6 +31,18 @@ app.get("/suppliers", async (request, response) => {
     response.send(suppliers);
 });
 
+// app.post("/path" async (request, response) => {
+
+// });
+
+// app.put("/path", (request, response) => {
+
+// });
+
+// app.delete("/path", (request, response) => {
+
+// });
+
 app.use((req, res) => {
     res.status(404);
     res.send(`<h1>Error 404, Finner ikke siden</h1>`);
