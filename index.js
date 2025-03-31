@@ -21,16 +21,18 @@ Qs.init = async function () {
 
 
 
-    Qs.Employees = pool.query("SELECT * FROM employees LIMIT 5;", (err, result) => {
-        if (result === null){
-            console.error(err); 
-        }else{
-            console.log(result);
-            return (result.rows)
-        };
-    });
+    Qs.Employees = async function () {
+       pool.query("SELECT * FROM employees LIMIT 5;", (err, result) => {
+            if (result === null){
+                console.error(err); 
+            }else{
+                console.log(result);
+                return (result.rows)
+            };
+        }); 
+    };
 
-    console.log(svar)
+    Qs.Employees();
 
 
 }
