@@ -1,51 +1,40 @@
-import express from "express";
-import { PrismaClient } from "@prisma/client";
+import pg from "pg";
 
-const prisma = new PrismaClient({
-    log: ['info']
-});
+const Qs = {}
 
-const app = express();
-const port = 3000;
+Qs.init = async function () {
+    const { Pool } = pg;
 
-app.use(express.static("public"));
+    const pool = new Pool({
+        // user: "testbruker",
+        // password: "testpassord",
+        // host: "127.0.0.1",
+        // port: 5432,
+        // database: "NortW",
+        connectionString: "postgres://testbruker:testpassord@127.0.0.1:5432/NorthW"
+    });
 
-app.get("/", (request, response) => {
-    
-    response.send("hei, vi har for øyeblikket bare customers og suppliers");
-});
+    await pool.connect();
 
-app.get("/customers", async (request, response) => {
-    const customers = await prisma.customers.findMany();
-    response.send(customers);
-});
 
-app.get("/suppliers", async (request, response) => {
-    const suppliers = await prisma.suppliers.findMany({
-        where: {
-            company_name: {
-                not: "asdgasd",
-            }
-        }
-    });    
-    response.send(suppliers);
-});
 
-// app.post("/path" async (request, response) => {
+    Qs.Employees = pool.query("SELECT * FROM employees LIMIT 5;", (err, result) => {
+        if (result === null){
+            console.error(err); 
+        }else{
+            console.log(result);
+            return (result.rows)
+        };
+    });
 
-// });
+    console.log(svar)
 
-// app.put("/path", (request, response) => {
 
-// });
+}
 
-// app.delete("/path", (request, response) => {
 
-// });
 
-app.use((req, res) => {
-    res.status(404);
-    res.send(`<h1>Error 404, Finner ikke siden</h1>`);
-});
 
-app.listen(port, (error) => {console.error(error)});
+
+Qs.init();
+

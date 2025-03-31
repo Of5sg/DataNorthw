@@ -2,9 +2,9 @@
   "name": "postgres_Data",
   "image": "mcr.microsoft.com/devcontainers/universal:latest",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "latest"
-    }
+    // "ghcr.io/devcontainers/features/node:1": {
+    //   "version": "latest"
+    // }
   },
   "forwardPorts": [5432, 3000]
 }

@@ -1,25 +1,16 @@
 {
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.14.1"
+  },
   "name": "datanorthw",
   "version": "1.0.0",
-  "description": "Database with the northwind example",
+  "description": "---------------------------- Dette er en Database med Northwind eksempelet.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Of5sg/DataNorthw.git"
-  },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Of5sg/DataNorthw/issues"
-  },
-  "homepage": "https://github.com/Of5sg/DataNorthw#readme",
-  "dependencies": {
-    "@prisma/client": "^6.5.0",
-    "express": "^4.21.2",
-    "prisma": "^6.5.0"
-  }
+  "license": "ISC"
 }

@@ -1,8 +1,8 @@
 # DataBase
 ----------------------------
-Dette er en DAtabase som tar Northwind eksempelet.
+Dette er en Database med Northwind eksempelet.
 
->startes ved å åpne prosjektet som ett codespace i github, og skrive det følgende i konsollen.
-```bash
-bash startup.sh
-``` 
+>startes ved å åpne prosjektet i ett codespace i github, og skrive det følgende i konsollen.
+>```bash
+>bash startup.sh
+>``` 
