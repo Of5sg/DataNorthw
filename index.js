@@ -1,4 +1,7 @@
 import pg from "pg";
+import fs from "fs/promises";
+
+// Jeg skriver all spørringen som metoder, så de blir lettere å importere senere
 
 const Qs = {}
 

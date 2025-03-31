@@ -18,6 +18,9 @@ cat ./northwind.sql | docker exec -i post_Data psql -U testbruker -d NorthW
 
 # docker exec -it post_Data psql testdb -U testbruker
 
+npm install express
+npm install pg
+
 docker container start post_Data
 
 # # fikk hjelp med denne
