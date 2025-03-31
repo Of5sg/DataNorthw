@@ -5,8 +5,8 @@ export class Region {
     constructor(region_id, region_description){
         this.region_id = region_id || null;
         this.region_description = region_description || "?";
-    }
-}
+    };
+};
 
 export class Customer {
     constructor(id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax){
@@ -43,3 +43,23 @@ export class Order {
     };
 };
 
+export class employees {
+    constructor(employee_id, title, title_of_courtesy, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, reports_to, photo_path){
+        this.employee_id = employee_id || null;
+        this.title = title || "?";
+        this.title_of_courtesy = title_of_courtesy || "?";
+        this.birth_date = birth_date || null;
+        this.hire_date = hire_date || null;
+        this.address = address || "?";
+        this.city = city || "?";
+        this.region = region || "?";
+        this.postal_code = postal_code || "?";
+        this.country = country || "?";
+        this.home_phone = home_phone || "?";
+        this.extension = extension || "?";
+        this.photo = photo || "?";
+        this.notes = notes || "?";
+        this.reports_to = reports_to || null;
+        this.photo_path = photo_path || "?";
+    };
+};
