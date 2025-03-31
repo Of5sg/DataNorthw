@@ -1,14 +1,14 @@
 
 //her forsøker jeg å skrive ett ORM
 
-class Region {
+export class Region {
     constructor(region_id, region_description){
         this.region_id = region_id || null;
         this.region_description = region_description || "?";
     }
 }
 
-class Customer {
+export class Customer {
     constructor(id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax){
         this.customer_id = id || "?";
         this.company_name = company_name || "?";
@@ -24,7 +24,7 @@ class Customer {
     };
 };
 
-class Order {
+export class Order {
     constructor(order_id, customer_id, employee_id, order_date, required_date, shipped_date, ship_via, freight, ship_name, ship_address, ship_city, ship_region, ship_postal_code, ship_country){
     this.order_id = order_id || null;                  // smallint NOT NULL,
     this.customer_id = customer_id || "?";             // character varying(5),
@@ -43,10 +43,3 @@ class Order {
     };
 };
 
-
-
-
-
-const stuff = new Customer()
-
-console.log(stuff);
