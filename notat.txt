@@ -1,5 +1,3 @@
-bruker: bruker
-passord: henteData
 
 postgres:
 \du     - liste over alle brukere
@@ -38,3 +36,6 @@ BY
 LIMIT
 DISTINCT(unngå duplikater)
 SELECT * FROM weather JOIN cities ON city = name;(flere tabeller)
+
+
+gå over alle sql-queries igjen. og skrive kommentarer
