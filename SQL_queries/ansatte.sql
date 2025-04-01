@@ -1,4 +1,4 @@
-SELECT employees.employee_id, first_name, last_name, title, hire_date, count(*)
+SELECT employees.employee_id, first_name, last_name, title, hire_date, count(orders.employee_id)
 FROM employees
 JOIN orders ON employees.employee_id = orders.employee_id
 GROUP BY employees.employee_id
