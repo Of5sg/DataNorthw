@@ -43,7 +43,7 @@ export class Order {
     };
 };
 
-export class employees {
+export class Employee {
     constructor(employee_id, title, title_of_courtesy, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, reports_to, photo_path){
         this.employee_id = employee_id || null;
         this.title = title || "?";
