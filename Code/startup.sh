@@ -23,11 +23,5 @@ npm install pg
 
 docker container start post_Data
 
-# # fikk hjelp med denne
-# CONTAINER_NAME="post_Data"
-# CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CONTAINER_NAME) 
-# echo CONTAINER_IP
-# NODE_ENV="CONTAINER_IP=$CONTAINER_IP" node Index.js
-
 # node index.js
 
