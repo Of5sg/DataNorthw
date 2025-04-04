@@ -14,3 +14,7 @@ ORDER BY year, month, product_name;
 -- JOIN orders ON orders.order_id = order_details.order_id
 -- JOIN products ON order_details.product_id = products.product_id
 -- ORDER BY product_name, orders.order_date;
+
+
+
+-- denne må tenkes mer på
