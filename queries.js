@@ -5,60 +5,189 @@ import fs from "fs/promises";
 
 const Qs = {}
 
-const { Pool } = pg;
 
-const pool = new Pool({
-    // user: "testbruker",
-    // password: "testpassord",
-    // host: "127.0.0.1",
-    // port: 5432,
-    // database: "NortW",
-    connectionString: "postgres://testbruker:testpassord@127.0.0.1:5432/NorthW"
-});
+Qs.init = async function () {
 
-const client = await pool.connect();
+    const { Pool } = pg;
+
+    // pool som property of Qs
+    Qs.pool = new Pool({
+        // user: "testbruker",
+        // password: "testpassord",
+        // host: "127.0.0.1",
+        // port: 5432,
+        // database: "NortW",
+        connectionString: "postgres://testbruker:testpassord@127.0.0.1:5432/NorthW"
+    });
+
+}
 
 Qs.Pris_volum = async function () {
-    client.query(`
-        SELECT 
-            EXTRACT(YEAR FROM order_date) AS year,
-            ROUND(AVG(((unit_price*quantity)*(1 - discount))/quantity)::numeric, 2) AS snitt_pris_per,
-            ROUND(AVG(discount)::numeric, 2) AS discount,
-            CASE
-                WHEN quantity < 20 THEN 'lavt volum' 
-                WHEN quantity > 50 THEN 'høyt volum'
-            ELSE
-                'middels volum'
-            END AS volum
-        FROM order_details
-        JOIN orders ON orders.order_id = order_details.order_id
-        GROUP BY year, volum
-        ORDER BY year`, 
 
-        (err, result) => {
-            if (result === null){
-                console.error(err)
-            }else{
-                console.log(result.rows);
-                return(result.rows);
-            };
-        }
-    );
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/pris_vs_volum/pris_vs_volum.sql", "utf-8");
+    
+    const result = await client.query(Q);
+
     client.release();
+
+    return result.rows;
+
 };
 
-Qs.Employees = async function () {
-    client.query("SELECT * FROM employees LIMIT 5;", (err, result) => {
-        if (result === null){
-            console.error(err); 
-        }else{
-            console.log(result);
-            return (result.rows);
-        };
-    });
+Qs.Maned_salg = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/maned_salg/maned_salg.sql", "utf-8");
+    
+    const result = await client.query(Q);
+
     client.release();
+
+    return result.rows;
+
 };
 
-Qs.Pris_volum()
+Qs.Sesong_trend = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/sesong/sesong_trend.sql", "utf-8");
+    
+    const result = await client.query(Q);
+
+    client.release();
+
+    return result.rows;
+
+};
+
+Qs.Leveringstid = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/leveringstid/leveringstid.sql", "utf-8");
+    
+    const result = await client.query(Q);
+
+    client.release();
+
+    return result.rows;
+
+};
+
+Qs.Snitt_verdi = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/gj_ordreverdi/gj_ordreverdi.sql", "utf-8");
+    
+    const result = await client.query(Q);
+
+    client.release();
+
+    return result.rows;
+
+};
+
+Qs.Etterspørsel = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/etterspørsel/etterspørsel_trend.sql", "utf-8");
+    
+    const result = await client.query(Q);
+
+    client.release();
+
+    return result.rows;
+
+};
+
+Qs.Ansatte = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/ansatte.sql", "utf-8");
+
+    const result = await client.query(Q);
+    
+    client.release();
+    
+    return result.rows;
+
+};
+
+Qs.Kategorier = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/kategorier.sql", "utf-8");
+
+    const result = await client.query(Q);
+    
+    client.release();
+    
+    return result.rows;
+
+};
+
+Qs.Lagerbeholdning = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/lagerbeholdning.sql", "utf-8");
+
+    const result = await client.query(Q);
+    
+    client.release();
+    
+    return result.rows;
+
+};
+
+Qs.Leverandor = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/leverandor.sql", "utf-8");
+
+    const result = await client.query(Q);
+    
+    client.release();
+    
+    return result.rows;
+
+};
+
+Qs.Salg = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/salg.sql", "utf-8");
+
+    const result = await client.query(Q);
+    
+    client.release();
+    
+    return result.rows;
+
+};
+
+Qs.Varer = async function () {
+
+    const client = await Qs.pool.connect();
+
+    const Q = await fs.readFile("./SQL_queries/varer.sql", "utf-8");
+
+    const result = await client.query(Q);
+    
+    client.release();
+    
+    return result.rows;
+
+};
 
 export default Qs;
