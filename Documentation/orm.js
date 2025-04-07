@@ -1,5 +1,5 @@
 
-//her forsøker jeg å skrive ett ORM
+//her forsøker jeg å skrive ett ORM i kode
 
 export class Region {
     constructor(region_id, region_description){
