@@ -16,4 +16,4 @@ JOIN orders ON orders.order_id = order_details.order_id
 GROUP BY year, month
 ORDER BY year, month
 
---- jeg ser ingen sammenheng mellom gjennomsnitt av antall varer og gjennomsnitt rabatt, på månedsbasis, har jeg gjort det feil?
+--- jeg ser ingen sammenheng mellom gjennomsnitt av antall varer og gjennomsnitt rabatt på månedsbasis, har jeg gjort det feil?
