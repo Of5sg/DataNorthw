@@ -22,3 +22,5 @@ sleep 0.2
 cat ./SQL_queries/ettersporsel/ettersporsel_trend.sql | docker exec -i post_Data psql -U testbruker -d NorthW | tee ./SQL_queries/ettersporsel/ettersporsel_trend_svar.sql
 sleep 0.2
 cat ./SQL_queries/sesong/sesong_trend.sql | docker exec -i post_Data psql -U testbruker -d NorthW | tee ./SQL_queries/sesong/sesong_trend_svar.sql
+sleep 0.2
+cat ./SQL_queries/pris_vs_volum/pris_vs_volum.sql | docker exec -i post_Data psql -U testbruker -d NorthW | tee ./SQL_queries/pris_vs_volum/pris_vs_volum_svar.sql
