@@ -7,4 +7,4 @@ JOIN orders ON employees.employee_id = orders.employee_id
 GROUP BY employees.employee_id
 ORDER BY antall_salg DESC;
 
--- denne må jeg muligens jobbe litt mer på, den gir litt mening, men jeg forstår ikke helt hvordan count er riktig??
+

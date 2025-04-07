@@ -1,3 +1,6 @@
+
+-- her ser vi gjennomsnittlig forsendelsestid, for hvert fraktfirma
+
 SELECT 
     shippers.company_name, 
     FLOOR(AVG(shipped_date - order_date)) AS dager, 

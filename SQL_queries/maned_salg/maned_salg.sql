@@ -10,5 +10,3 @@ FROM orders
 JOIN order_details ON order_details.order_id = orders.order_id
 GROUP BY year, month
 ORDER BY year, month;
-
---- svaret virket ekstremt høyt
