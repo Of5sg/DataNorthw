@@ -5,7 +5,7 @@
   },
   "name": "datanorthw",
   "version": "1.0.0",
-  "description": "---------------------------- Dette er en Database med Northwind eksempelet.",
+  "description": "Dette er en Database med Northwind eksempelet.",
   "main": "index.js",
   "type": "module",
   "scripts": {
