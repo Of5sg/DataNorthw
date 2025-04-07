@@ -39,3 +39,8 @@ SELECT * FROM weather JOIN cities ON city = name;(flere tabeller)
 
 
 gå over alle sql-queries igjen. og skrive kommentarer
+
+sql:
+relation algebra
+sql triggers
+normal forms
