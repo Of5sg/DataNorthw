@@ -11,13 +11,16 @@ Qs.init = async function () {
     const { Pool } = pg;
 
     // pool som property of Qs
+    
     Qs.pool = new Pool({
+
         // user: "testbruker",
         // password: "testpassord",
         // host: "127.0.0.1",
         // port: 5432,
         // database: "NortW",
         connectionString: "postgres://testbruker:testpassord@127.0.0.1:5432/NorthW"
+
     });
 
 }
