@@ -8,6 +8,8 @@ const port = 3000;
 
 await Qs.init();
 
+//------------------Get-------------------------
+
 app.get("/", async (request, response) => {
     response.send("vi har de følgende sidene tilgjengelig: pris_volum, ansatte, maned_salg, sesong_trend, leveringstid, snitt_verdi, ettersporsel, kategorier, lagerbeholdning, leverandor, salg, varer")
 });
@@ -59,6 +61,9 @@ app.get("/salg", async (request, response) => {
 app.get("/varer", async (request, response) => {
     response.send(await Qs.Varer());
 });
+
+//-------------------------------------------
+
 
 app.listen(port, () => {
     console.log("app startet på port:", port);

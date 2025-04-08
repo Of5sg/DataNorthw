@@ -63,3 +63,58 @@ export class Employee {
         this.photo_path = photo_path || "?";
     };
 };
+
+export class Category {
+    constructor (category_id, category_name, description, picture){
+       this.category_id = category_id || null;
+       this.category_name = category_name || "?";
+       this.description = description || "?";
+       this.picture = picture || ["?"]; //bytearr
+    };
+};
+
+export class Customer_customer_demo {
+    constructor (customer_id, customer_type_id) {
+        this.customer_id = customer_id || "?";
+        this.customer_type_id = customer_type_id || "?";
+    };
+};
+
+export class Customer_demographics {
+    constructor (customer_type_id, customer_desc) {
+        this.customer_type_id = customer_type_id || "?";
+        this.customer_desc = customer_desc || "?";
+    };
+};
+
+export class Employee_territory {
+    constructor (employee_id, territory_id) {
+        this.employee_id = employee_id || null;
+        this.territory_id = territory_id || "?";
+    };
+};
+
+export class Order_details {
+    constructor (order_id, product_id, unit_price, quantity, discount) {
+        this.order_id = order_id || null;
+        this.product_id = product_id || null;
+        this.unit_price = unit_price || null;
+        this.quantity = quantity || null;
+        this.discount = discount || null;
+    };
+};
+
+export class Product {
+    constructor (product_id, product_name, supplier_id, category_id, quantity_per_unit, unit_price, units_in_stock, units_on_order, reorder_level, discontinued) {
+        this.product_id = product_id || null;
+        this.product_name = product_name || "?";
+        this.supplier_id = supplier_id || null;
+        this.category_id = category_id || null;
+        this.quantity_per_unit = quantity_per_unit || "?";
+        this.unit_price = unit_price || null;
+        this.units_in_stock = units_in_stock || null;
+        this.units_on_order = units_on_order || null;
+        this.reorder_level = reorder_level || null;
+        this.discontinued = discontinued || null;
+    };
+};
