@@ -1,4 +1,4 @@
-# DataBase
+# Database
 ----------------------------
 Dette er en Database med Northwind eksempelet.
 Og en server som gir resultatene av predefinerte SQL utspørringer.
