@@ -3,7 +3,7 @@
 
 export class Region {
     constructor(region_id, region_description){
-        this.region_id = region_id || null;
+        this.region_id = region_id || 0;
         this.region_description = region_description || "?";
     };
 };
@@ -26,7 +26,7 @@ export class Customer {
 
 export class Order {
     constructor(order_id, customer_id, employee_id, order_date, required_date, shipped_date, ship_via, freight, ship_name, ship_address, ship_city, ship_region, ship_postal_code, ship_country){
-        this.order_id = order_id || null;                  // smallint NOT NULL,
+        this.order_id = order_id || 0;                  // smallint NOT NULL,
         this.customer_id = customer_id || "?";             // character varying(5),
         this.employee_id = employee_id || null;            // smallint,
         this.order_date = order_date || null;              // date,
@@ -45,7 +45,7 @@ export class Order {
 
 export class Employee {
     constructor(employee_id, title, title_of_courtesy, birth_date, hire_date, address, city, region, postal_code, country, home_phone, extension, photo, notes, reports_to, photo_path){
-        this.employee_id = employee_id || null;
+        this.employee_id = employee_id || 0;
         this.title = title || "?";
         this.title_of_courtesy = title_of_courtesy || "?";
         this.birth_date = birth_date || null;
@@ -66,7 +66,7 @@ export class Employee {
 
 export class Category {
     constructor (category_id, category_name, description, picture){
-       this.category_id = category_id || null;
+       this.category_id = category_id || 0;
        this.category_name = category_name || "?";
        this.description = description || "?";
        this.picture = picture || ["?"]; //bytearr
@@ -89,24 +89,24 @@ export class Customer_demographics {
 
 export class Employee_territory {
     constructor (employee_id, territory_id) {
-        this.employee_id = employee_id || null;
+        this.employee_id = employee_id || 0;
         this.territory_id = territory_id || "?";
     };
 };
 
 export class Order_details {
     constructor (order_id, product_id, unit_price, quantity, discount) {
-        this.order_id = order_id || null;
-        this.product_id = product_id || null;
-        this.unit_price = unit_price || null;
-        this.quantity = quantity || null;
-        this.discount = discount || null;
+        this.order_id = order_id || 0;
+        this.product_id = product_id || 0;
+        this.unit_price = unit_price || 0;
+        this.quantity = quantity || 0;
+        this.discount = discount || 0;
     };
 };
 
 export class Product {
     constructor (product_id, product_name, supplier_id, category_id, quantity_per_unit, unit_price, units_in_stock, units_on_order, reorder_level, discontinued) {
-        this.product_id = product_id || null;
+        this.product_id = product_id || 0;
         this.product_name = product_name || "?";
         this.supplier_id = supplier_id || null;
         this.category_id = category_id || null;
@@ -115,6 +115,48 @@ export class Product {
         this.units_in_stock = units_in_stock || null;
         this.units_on_order = units_on_order || null;
         this.reorder_level = reorder_level || null;
-        this.discontinued = discontinued || null;
+        this.discontinued = discontinued || 0;
+    };
+};
+
+export class Shipper {
+    constructor (shipper_id, company_name, phone) {
+        this.shipper_id = shipper_id || 0;
+        this.company_name = company_name || "?";
+        this.phone = phone || "?";
+    };
+};
+
+export class Supplier {
+    constructor (supplier_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax, homepage) {
+        this.supplier_id = supplier_id || 0;
+        this.company_name = company_name || "?";
+        this.contact_name = contact_name || "?";
+        this.contact_title = contact_title || "?";
+        this.address = address || "?";
+        this.city = city || "?";
+        this.region = region || "?";
+        this.postal_code = postal_code || "?";
+        this.country = country || "?";
+        this.phone = phone || "?";
+        this.fax = fax || "?";
+        this.homepage = homepage || "?";
+    };
+};
+
+export class Territories {
+    constructor (territory_id, territory_description, region_id) {
+        this.territory_id = territory_id || "?";
+        this.territory_description = territory_description || "?";
+        this.region_id = region_id || 0;
+    };
+};
+
+export class Us_state {
+    constructor (state_id, state_name, state_abbr, state_region) {
+        this.state_id = state_id || 0;
+        this.state_name = state_name || "?";
+        this.state_abbr = state_abbr || "?";
+        this.state_region = state_region || "?";
     };
 };
