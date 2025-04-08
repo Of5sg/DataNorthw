@@ -1,81 +1,81 @@
- product_id | unit_price |           product_name           | units_in_stock |                        description                         
-------------+------------+----------------------------------+----------------+------------------------------------------------------------
-          1 |         18 | Chai                             |             39 | Soft drinks, coffees, teas, beers, and ales
-          2 |         19 | Chang                            |             17 | Soft drinks, coffees, teas, beers, and ales
-          3 |         10 | Aniseed Syrup                    |             13 | Sweet and savory sauces, relishes, spreads, and seasonings
-          4 |         22 | Chef Anton's Cajun Seasoning     |             53 | Sweet and savory sauces, relishes, spreads, and seasonings
-          5 |      21.35 | Chef Anton's Gumbo Mix           |              0 | Sweet and savory sauces, relishes, spreads, and seasonings
-          6 |         25 | Grandma's Boysenberry Spread     |            120 | Sweet and savory sauces, relishes, spreads, and seasonings
-          7 |         30 | Uncle Bob's Organic Dried Pears  |             15 | Dried fruit and bean curd
-          8 |         40 | Northwoods Cranberry Sauce       |              6 | Sweet and savory sauces, relishes, spreads, and seasonings
-          9 |         97 | Mishi Kobe Niku                  |             29 | Prepared meats
-         10 |         31 | Ikura                            |             31 | Seaweed and fish
-         11 |         21 | Queso Cabrales                   |             22 | Cheeses
-         12 |         38 | Queso Manchego La Pastora        |             86 | Cheeses
-         13 |          6 | Konbu                            |             24 | Seaweed and fish
-         14 |      23.25 | Tofu                             |             35 | Dried fruit and bean curd
-         15 |         13 | Genen Shouyu                     |             39 | Sweet and savory sauces, relishes, spreads, and seasonings
-         16 |      17.45 | Pavlova                          |             29 | Desserts, candies, and sweet breads
-         17 |         39 | Alice Mutton                     |              0 | Prepared meats
-         18 |       62.5 | Carnarvon Tigers                 |             42 | Seaweed and fish
-         19 |        9.2 | Teatime Chocolate Biscuits       |             25 | Desserts, candies, and sweet breads
-         20 |         81 | Sir Rodney's Marmalade           |             40 | Desserts, candies, and sweet breads
-         21 |         10 | Sir Rodney's Scones              |              3 | Desserts, candies, and sweet breads
-         22 |         21 | Gustaf's Knäckebröd              |            104 | Breads, crackers, pasta, and cereal
-         23 |          9 | Tunnbröd                         |             61 | Breads, crackers, pasta, and cereal
-         24 |        4.5 | Guaraná Fantástica               |             20 | Soft drinks, coffees, teas, beers, and ales
-         25 |         14 | NuNuCa Nuß-Nougat-Creme          |             76 | Desserts, candies, and sweet breads
-         26 |      31.23 | Gumbär Gummibärchen              |             15 | Desserts, candies, and sweet breads
-         27 |       43.9 | Schoggi Schokolade               |             49 | Desserts, candies, and sweet breads
-         28 |       45.6 | Rössle Sauerkraut                |             26 | Dried fruit and bean curd
-         29 |     123.79 | Thüringer Rostbratwurst          |              0 | Prepared meats
-         30 |      25.89 | Nord-Ost Matjeshering            |             10 | Seaweed and fish
-         31 |       12.5 | Gorgonzola Telino                |              0 | Cheeses
-         32 |         32 | Mascarpone Fabioli               |              9 | Cheeses
-         33 |        2.5 | Geitost                          |            112 | Cheeses
-         34 |         14 | Sasquatch Ale                    |            111 | Soft drinks, coffees, teas, beers, and ales
-         35 |         18 | Steeleye Stout                   |             20 | Soft drinks, coffees, teas, beers, and ales
-         36 |         19 | Inlagd Sill                      |            112 | Seaweed and fish
-         37 |         26 | Gravad lax                       |             11 | Seaweed and fish
-         38 |      263.5 | Côte de Blaye                    |             17 | Soft drinks, coffees, teas, beers, and ales
-         39 |         18 | Chartreuse verte                 |             69 | Soft drinks, coffees, teas, beers, and ales
-         40 |       18.4 | Boston Crab Meat                 |            123 | Seaweed and fish
-         41 |       9.65 | Jack's New England Clam Chowder  |             85 | Seaweed and fish
-         42 |         14 | Singaporean Hokkien Fried Mee    |             26 | Breads, crackers, pasta, and cereal
-         43 |         46 | Ipoh Coffee                      |             17 | Soft drinks, coffees, teas, beers, and ales
-         44 |      19.45 | Gula Malacca                     |             27 | Sweet and savory sauces, relishes, spreads, and seasonings
-         45 |        9.5 | Rogede sild                      |              5 | Seaweed and fish
-         46 |         12 | Spegesild                        |             95 | Seaweed and fish
-         47 |        9.5 | Zaanse koeken                    |             36 | Desserts, candies, and sweet breads
-         48 |      12.75 | Chocolade                        |             15 | Desserts, candies, and sweet breads
-         49 |         20 | Maxilaku                         |             10 | Desserts, candies, and sweet breads
-         50 |      16.25 | Valkoinen suklaa                 |             65 | Desserts, candies, and sweet breads
-         51 |         53 | Manjimup Dried Apples            |             20 | Dried fruit and bean curd
-         52 |          7 | Filo Mix                         |             38 | Breads, crackers, pasta, and cereal
-         53 |       32.8 | Perth Pasties                    |              0 | Prepared meats
-         54 |       7.45 | Tourtière                        |             21 | Prepared meats
-         55 |         24 | Pâté chinois                     |            115 | Prepared meats
-         56 |         38 | Gnocchi di nonna Alice           |             21 | Breads, crackers, pasta, and cereal
-         57 |       19.5 | Ravioli Angelo                   |             36 | Breads, crackers, pasta, and cereal
-         58 |      13.25 | Escargots de Bourgogne           |             62 | Seaweed and fish
-         59 |         55 | Raclette Courdavault             |             79 | Cheeses
-         60 |         34 | Camembert Pierrot                |             19 | Cheeses
-         61 |       28.5 | Sirop d'érable                   |            113 | Sweet and savory sauces, relishes, spreads, and seasonings
-         62 |       49.3 | Tarte au sucre                   |             17 | Desserts, candies, and sweet breads
-         63 |       43.9 | Vegie-spread                     |             24 | Sweet and savory sauces, relishes, spreads, and seasonings
-         64 |      33.25 | Wimmers gute Semmelknödel        |             22 | Breads, crackers, pasta, and cereal
-         65 |      21.05 | Louisiana Fiery Hot Pepper Sauce |             76 | Sweet and savory sauces, relishes, spreads, and seasonings
-         66 |         17 | Louisiana Hot Spiced Okra        |              4 | Sweet and savory sauces, relishes, spreads, and seasonings
-         67 |         14 | Laughing Lumberjack Lager        |             52 | Soft drinks, coffees, teas, beers, and ales
-         68 |       12.5 | Scottish Longbreads              |              6 | Desserts, candies, and sweet breads
-         69 |         36 | Gudbrandsdalsost                 |             26 | Cheeses
-         70 |         15 | Outback Lager                    |             15 | Soft drinks, coffees, teas, beers, and ales
-         71 |       21.5 | Flotemysost                      |             26 | Cheeses
-         72 |       34.8 | Mozzarella di Giovanni           |             14 | Cheeses
-         73 |         15 | Röd Kaviar                       |            101 | Seaweed and fish
-         74 |         10 | Longlife Tofu                    |              4 | Dried fruit and bean curd
-         75 |       7.75 | Rhönbräu Klosterbier             |            125 | Soft drinks, coffees, teas, beers, and ales
-         76 |         18 | Lakkalikööri                     |             57 | Soft drinks, coffees, teas, beers, and ales
-         77 |         13 | Original Frankfurter grüne Soße  |             32 | Sweet and savory sauces, relishes, spreads, and seasonings
+ product_id |           product_name           |                        description                         | unit_price | units_in_stock 
+------------+----------------------------------+------------------------------------------------------------+------------+----------------
+          1 | Chai                             | Soft drinks, coffees, teas, beers, and ales                |         18 |             39
+          2 | Chang                            | Soft drinks, coffees, teas, beers, and ales                |         19 |             17
+          3 | Aniseed Syrup                    | Sweet and savory sauces, relishes, spreads, and seasonings |         10 |             13
+          4 | Chef Anton's Cajun Seasoning     | Sweet and savory sauces, relishes, spreads, and seasonings |         22 |             53
+          5 | Chef Anton's Gumbo Mix           | Sweet and savory sauces, relishes, spreads, and seasonings |      21.35 |              0
+          6 | Grandma's Boysenberry Spread     | Sweet and savory sauces, relishes, spreads, and seasonings |         25 |            120
+          7 | Uncle Bob's Organic Dried Pears  | Dried fruit and bean curd                                  |         30 |             15
+          8 | Northwoods Cranberry Sauce       | Sweet and savory sauces, relishes, spreads, and seasonings |         40 |              6
+          9 | Mishi Kobe Niku                  | Prepared meats                                             |         97 |             29
+         10 | Ikura                            | Seaweed and fish                                           |         31 |             31
+         11 | Queso Cabrales                   | Cheeses                                                    |         21 |             22
+         12 | Queso Manchego La Pastora        | Cheeses                                                    |         38 |             86
+         13 | Konbu                            | Seaweed and fish                                           |          6 |             24
+         14 | Tofu                             | Dried fruit and bean curd                                  |      23.25 |             35
+         15 | Genen Shouyu                     | Sweet and savory sauces, relishes, spreads, and seasonings |         13 |             39
+         16 | Pavlova                          | Desserts, candies, and sweet breads                        |      17.45 |             29
+         17 | Alice Mutton                     | Prepared meats                                             |         39 |              0
+         18 | Carnarvon Tigers                 | Seaweed and fish                                           |       62.5 |             42
+         19 | Teatime Chocolate Biscuits       | Desserts, candies, and sweet breads                        |        9.2 |             25
+         20 | Sir Rodney's Marmalade           | Desserts, candies, and sweet breads                        |         81 |             40
+         21 | Sir Rodney's Scones              | Desserts, candies, and sweet breads                        |         10 |              3
+         22 | Gustaf's Knäckebröd              | Breads, crackers, pasta, and cereal                        |         21 |            104
+         23 | Tunnbröd                         | Breads, crackers, pasta, and cereal                        |          9 |             61
+         24 | Guaraná Fantástica               | Soft drinks, coffees, teas, beers, and ales                |        4.5 |             20
+         25 | NuNuCa Nuß-Nougat-Creme          | Desserts, candies, and sweet breads                        |         14 |             76
+         26 | Gumbär Gummibärchen              | Desserts, candies, and sweet breads                        |      31.23 |             15
+         27 | Schoggi Schokolade               | Desserts, candies, and sweet breads                        |       43.9 |             49
+         28 | Rössle Sauerkraut                | Dried fruit and bean curd                                  |       45.6 |             26
+         29 | Thüringer Rostbratwurst          | Prepared meats                                             |     123.79 |              0
+         30 | Nord-Ost Matjeshering            | Seaweed and fish                                           |      25.89 |             10
+         31 | Gorgonzola Telino                | Cheeses                                                    |       12.5 |              0
+         32 | Mascarpone Fabioli               | Cheeses                                                    |         32 |              9
+         33 | Geitost                          | Cheeses                                                    |        2.5 |            112
+         34 | Sasquatch Ale                    | Soft drinks, coffees, teas, beers, and ales                |         14 |            111
+         35 | Steeleye Stout                   | Soft drinks, coffees, teas, beers, and ales                |         18 |             20
+         36 | Inlagd Sill                      | Seaweed and fish                                           |         19 |            112
+         37 | Gravad lax                       | Seaweed and fish                                           |         26 |             11
+         38 | Côte de Blaye                    | Soft drinks, coffees, teas, beers, and ales                |      263.5 |             17
+         39 | Chartreuse verte                 | Soft drinks, coffees, teas, beers, and ales                |         18 |             69
+         40 | Boston Crab Meat                 | Seaweed and fish                                           |       18.4 |            123
+         41 | Jack's New England Clam Chowder  | Seaweed and fish                                           |       9.65 |             85
+         42 | Singaporean Hokkien Fried Mee    | Breads, crackers, pasta, and cereal                        |         14 |             26
+         43 | Ipoh Coffee                      | Soft drinks, coffees, teas, beers, and ales                |         46 |             17
+         44 | Gula Malacca                     | Sweet and savory sauces, relishes, spreads, and seasonings |      19.45 |             27
+         45 | Rogede sild                      | Seaweed and fish                                           |        9.5 |              5
+         46 | Spegesild                        | Seaweed and fish                                           |         12 |             95
+         47 | Zaanse koeken                    | Desserts, candies, and sweet breads                        |        9.5 |             36
+         48 | Chocolade                        | Desserts, candies, and sweet breads                        |      12.75 |             15
+         49 | Maxilaku                         | Desserts, candies, and sweet breads                        |         20 |             10
+         50 | Valkoinen suklaa                 | Desserts, candies, and sweet breads                        |      16.25 |             65
+         51 | Manjimup Dried Apples            | Dried fruit and bean curd                                  |         53 |             20
+         52 | Filo Mix                         | Breads, crackers, pasta, and cereal                        |          7 |             38
+         53 | Perth Pasties                    | Prepared meats                                             |       32.8 |              0
+         54 | Tourtière                        | Prepared meats                                             |       7.45 |             21
+         55 | Pâté chinois                     | Prepared meats                                             |         24 |            115
+         56 | Gnocchi di nonna Alice           | Breads, crackers, pasta, and cereal                        |         38 |             21
+         57 | Ravioli Angelo                   | Breads, crackers, pasta, and cereal                        |       19.5 |             36
+         58 | Escargots de Bourgogne           | Seaweed and fish                                           |      13.25 |             62
+         59 | Raclette Courdavault             | Cheeses                                                    |         55 |             79
+         60 | Camembert Pierrot                | Cheeses                                                    |         34 |             19
+         61 | Sirop d'érable                   | Sweet and savory sauces, relishes, spreads, and seasonings |       28.5 |            113
+         62 | Tarte au sucre                   | Desserts, candies, and sweet breads                        |       49.3 |             17
+         63 | Vegie-spread                     | Sweet and savory sauces, relishes, spreads, and seasonings |       43.9 |             24
+         64 | Wimmers gute Semmelknödel        | Breads, crackers, pasta, and cereal                        |      33.25 |             22
+         65 | Louisiana Fiery Hot Pepper Sauce | Sweet and savory sauces, relishes, spreads, and seasonings |      21.05 |             76
+         66 | Louisiana Hot Spiced Okra        | Sweet and savory sauces, relishes, spreads, and seasonings |         17 |              4
+         67 | Laughing Lumberjack Lager        | Soft drinks, coffees, teas, beers, and ales                |         14 |             52
+         68 | Scottish Longbreads              | Desserts, candies, and sweet breads                        |       12.5 |              6
+         69 | Gudbrandsdalsost                 | Cheeses                                                    |         36 |             26
+         70 | Outback Lager                    | Soft drinks, coffees, teas, beers, and ales                |         15 |             15
+         71 | Flotemysost                      | Cheeses                                                    |       21.5 |             26
+         72 | Mozzarella di Giovanni           | Cheeses                                                    |       34.8 |             14
+         73 | Röd Kaviar                       | Seaweed and fish                                           |         15 |            101
+         74 | Longlife Tofu                    | Dried fruit and bean curd                                  |         10 |              4
+         75 | Rhönbräu Klosterbier             | Soft drinks, coffees, teas, beers, and ales                |       7.75 |            125
+         76 | Lakkalikööri                     | Soft drinks, coffees, teas, beers, and ales                |         18 |             57
+         77 | Original Frankfurter grüne Soße  | Sweet and savory sauces, relishes, spreads, and seasonings |         13 |             32
 (77 rows)
 

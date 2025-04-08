@@ -9,7 +9,7 @@ const port = 3000;
 await Qs.init();
 
 app.get("/", async (request, response) => {
-    response.send("vi har de følgende sidene tilgjengelig: pris_volum, ansatte, maned_salg, sesong_trend, leveringstid, snitt_verdi, etterspørsel, kategorier, lagerbeholdning, leverandor, salg, varer")
+    response.send("vi har de følgende sidene tilgjengelig: pris_volum, ansatte, maned_salg, sesong_trend, leveringstid, snitt_verdi, ettersporsel, kategorier, lagerbeholdning, leverandor, salg, varer")
 });
 
 app.get("/pris_volum", async (request, response) => {
@@ -36,7 +36,7 @@ app.get("/snitt_verdi", async (request, response) => {
     response.send(await Qs.Snitt_verdi());
 });
 
-app.get("/etterspørsel", async (request, response) => {
+app.get("/ettersporsel", async (request, response) => {
     response.send(await Qs.Etterspørsel());
 });
 

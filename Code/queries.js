@@ -99,7 +99,7 @@ Qs.Etterspørsel = async function () {
 
     const client = await Qs.pool.connect();
 
-    const Q = await fs.readFile("./SQL_queries/etterspørsel/etterspørsel_trend.sql", "utf-8");
+    const Q = await fs.readFile("./SQL_queries/ettersporsel/ettersporsel_trend.sql", "utf-8");
     
     const result = await client.query(Q);
 
