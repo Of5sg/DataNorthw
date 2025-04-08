@@ -1,9 +1,6 @@
 import Qs from "./Code/queries.js";
 import express from "express";
-import * as orm from "Documentation/orm.js";
-
-import fs from "fs/promises";
-import { Customer } from "./Documentation/orm.js";
+import * as orm from "./Documentation/orm.js";
 
 const app = express();
 const port = 3000;
