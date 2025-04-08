@@ -1,14 +1,16 @@
 import Qs from "./Code/queries.js";
 import express from "express";
+import * as orm from "Documentation/orm.js";
 
 import fs from "fs/promises";
+import { Customer } from "./Documentation/orm.js";
 
 const app = express();
 const port = 3000;
 
 await Qs.init();
 
-//------------------Get-------------------------
+//------------------GET-------------------------
 
 app.get("/", async (request, response) => {
     response.send("vi har de følgende sidene tilgjengelig: pris_volum, ansatte, maned_salg, sesong_trend, leveringstid, snitt_verdi, ettersporsel, kategorier, lagerbeholdning, leverandor, salg, varer")
@@ -62,7 +64,24 @@ app.get("/varer", async (request, response) => {
     response.send(await Qs.Varer());
 });
 
-//-------------------------------------------
+//--------------------POST-----------------------
+
+app.post()
+
+//--------------------PATCH-----------------------
+
+app.patch()
+
+//--------------------PUT-----------------------
+
+app.put()
+
+//--------------------DELETE-----------------------
+
+app.delete()
+
+
+
 
 
 app.listen(port, () => {
