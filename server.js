@@ -1,15 +1,20 @@
 import Qs from "./Code/queries.js";
 import express from "express";
-import * as orm from "./Documentation/orm.js";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
 
 await Qs.init();
 
-
 app.get("/", async (request, response) => {
-    response.send("vi har de følgende sidene tilgjengelig: pris_volum, ansatte, maned_salg, sesong_trend, leveringstid, snitt_verdi, ettersporsel, kategorier, lagerbeholdning, leverandor, salg, varer")
+    response.sendFile(path.join(__dirname, "./index.html"), err => {
+        console.error(err);
+    });
 });
 
 app.get("/pris_volum", async (request, response) => {

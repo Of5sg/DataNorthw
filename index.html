@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+        <title>Presentasjon</title>
+        <style>
+            body {
+                background-color: rgb(238, 206, 168);
+                margin: 0;
+                display: grid;
+                grid-template-areas: 
+                    "header header header header header header"
+                    "nav iframe iframe iframe iframe iframe"
+                    "nav iframe iframe iframe iframe iframe"
+                    "nav iframe iframe iframe iframe iframe"
+                    "nav iframe iframe iframe iframe iframe"
+                    "nav iframe iframe iframe iframe iframe";
+                grid-template-rows: 70px auto;
+                grid-template-columns: 200px auto;
+                gap: 20px;
+                height: 100vh;
+            }
+
+            h1 {
+                grid-area: header;
+                display: flex;
+                justify-content: center;
+            }
+
+            .knapp {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            #knapper {
+                grid-area: nav;
+            }
+
+            #iframe {
+                grid-area: iframe;
+                width: 99%;
+                height: 99%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Datapresentasjon</h1>
+        <ul id="knapper">
+            <li><button name="Pris_Volum" onclick="changeIframeSrc('/pris_volum')" class="knapp">Pris/Volum</button></li>
+            <li><button name="Ansatte" onclick="changeIframeSrc('/ansatte')" class="knapp">Ansatte</button></li>
+            <li><button name="Salg per måned" onclick="changeIframeSrc('/maned_salg')" class="knapp">Måned salg</button></li>
+            <li><button name="Sesong_trend" onclick="changeIframeSrc('/sesong_trend')" class="knapp">Sesong trend</button></li>
+            <li><button name="Leveringstid" onclick="changeIframeSrc('/leveringstid')" class="knapp">Leveringstid</button></li>
+            <li><button name="Snitt verdi" onclick="changeIframeSrc('/snitt_verdi')" class="knapp">Snitt verdi</button></li>
+            <li><button name="Etterspørsel" onclick="changeIframeSrc('/ettersporsel')" class="knapp">Etterspørsel</button></li>
+            <li><button name="Kategorier" onclick="changeIframeSrc('/kategorier')" class="knapp">Kategorier</button></li>
+            <li><button name="Lagerbeholdning" onclick="changeIframeSrc('/lagerbeholdning')" class="knapp">Lagerbeholdning</button></li>
+            <li><button name="Leverandør" onclick="changeIframeSrc('/leverandor')" class="knapp">Leverandør</button></li>
+            <li><button name="Salg" onclick="changeIframeSrc('/salg')" class="knapp">Salg</button></li>
+            <li><button name="Varer" onclick="changeIframeSrc('/varer')" class="knapp">Varer</button></li>
+        </ul>
+        <iframe name="Datasett" id="iframe" src="/ansatte"></iframe>
+        <script>
+            const urlBase = window.location.origin;
+            function changeIframeSrc(url){
+                const iframe = document.getElementById("iframe");
+                iframe.src = urlBase + url;
+            }
+        </script>
+    </body>
+</html>
