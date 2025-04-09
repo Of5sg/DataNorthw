@@ -7,7 +7,6 @@ const port = 3000;
 
 await Qs.init();
 
-//------------------GET-------------------------
 
 app.get("/", async (request, response) => {
     response.send("vi har de følgende sidene tilgjengelig: pris_volum, ansatte, maned_salg, sesong_trend, leveringstid, snitt_verdi, ettersporsel, kategorier, lagerbeholdning, leverandor, salg, varer")
@@ -18,7 +17,12 @@ app.get("/pris_volum", async (request, response) => {
 });
 
 app.get("/ansatte", async (request, response) => {
-    response.send(await Qs.Ansatte());
+    const result = await Qs.Ansatte();
+    // const name = "Margaret Peacock";
+    // const res = result.filter(function (emp) {
+    //     return emp.name == name;
+    // });   
+    response.send(result);
 });
 
 app.get("/maned_salg", async (request, response) => {
@@ -54,28 +58,29 @@ app.get("/leverandor", async (request, response) => {
 });
 
 app.get("/salg", async (request, response) => {
-    response.send(await Qs.Salg());
+    const result = await Qs.Salg();
+    response.send(result);
 });
 
 app.get("/varer", async (request, response) => {
     response.send(await Qs.Varer());
 });
 
-//--------------------POST-----------------------
 
-app.post()
 
-//--------------------PATCH-----------------------
+// app.post()
 
-app.patch()
 
-//--------------------PUT-----------------------
 
-app.put()
+// app.patch()
 
-//--------------------DELETE-----------------------
 
-app.delete()
+
+// app.put()
+
+
+
+// app.delete()
 
 
 
