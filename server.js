@@ -12,13 +12,22 @@ const port = 3000;
 await Qs.init();
 
 app.get("/", async (request, response) => {
-    response.sendFile(path.join(__dirname, "./index.html"), err => {
+    try{
+        response.sendFile(path.join(__dirname, "./index.html"));
+    } catch (err) {
         console.error(err);
-    });
+        response.status(500);
+    }
 });
 
 app.get("/pris_volum", async (request, response) => {
-    response.send(await Qs.Pris_volum());
+    try{
+      response.send(await Qs.Pris_volum());  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
+    
 });
 
 app.get("/ansatte", async (request, response) => {
@@ -26,49 +35,113 @@ app.get("/ansatte", async (request, response) => {
     // const name = "Margaret Peacock";
     // const res = result.filter(function (emp) {
     //     return emp.name == name;
-    // });   
-    response.send(result);
+    // });
+    try{
+        response.send(result);
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/maned_salg", async (request, response) => {
-    response.send(await Qs.Maned_salg());
+    const result = await Qs.Maned_salg()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/sesong_trend", async (request, response) => {
-    response.send(await Qs.Sesong_trend());
+    const result = await Qs.Sesong_trend()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/leveringstid", async (request, response) => {
-    response.send(await Qs.Leveringstid());
+    const result = await Qs.Leveringstid()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/snitt_verdi", async (request, response) => {
-    response.send(await Qs.Snitt_verdi());
+    const result = await Qs.Snitt_verdi()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/ettersporsel", async (request, response) => {
-    response.send(await Qs.Etterspørsel());
+    const result = await Qs.Etterspørsel()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/kategorier", async (request, response) => {
-    response.send(await Qs.Kategorier());
+    const result = await Qs.Kategorier()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/lagerbeholdning", async (request, response) => {
-    response.send(await Qs.Lagerbeholdning());
+    const result = await Qs.Lagerbeholdning()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/leverandor", async (request, response) => {
-    response.send(await Qs.Leverandor());
+    const result = await Qs.Leverandor()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/salg", async (request, response) => {
-    const result = await Qs.Salg();
-    response.send(result);
+    const result = await Qs.Salg()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 app.get("/varer", async (request, response) => {
-    response.send(await Qs.Varer());
+    const result = await Qs.Varer()
+    try{
+        response.send(result);  
+    } catch (err) {
+        console.log(err)
+        response.status(500)
+    }
 });
 
 

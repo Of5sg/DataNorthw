@@ -6,16 +6,12 @@
         <title>Presentasjon</title>
         <style>
             body {
-                background-color: rgb(238, 206, 168);
+                /* background-color: rgb(238, 206, 168); */
                 margin: 0;
                 display: grid;
                 grid-template-areas: 
-                    "header header header header header header"
-                    "nav iframe iframe iframe iframe iframe"
-                    "nav iframe iframe iframe iframe iframe"
-                    "nav iframe iframe iframe iframe iframe"
-                    "nav iframe iframe iframe iframe iframe"
-                    "nav iframe iframe iframe iframe iframe";
+                    "header header "
+                    "nav iframe";
                 grid-template-rows: 70px auto;
                 grid-template-columns: 200px auto;
                 gap: 20px;
@@ -38,10 +34,12 @@
             }
 
             #iframe {
+                margin: 10px;
                 grid-area: iframe;
-                width: 99%;
-                height: 99%;
+                width: 96%;
+                height: 98%;
             }
+
         </style>
     </head>
     <body>
