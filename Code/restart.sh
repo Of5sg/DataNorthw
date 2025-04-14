@@ -27,4 +27,4 @@ docker container start post_Data
 # cat ./SQL_queries/pris_vs_volum/pris_vs_volum.sql | docker exec -i post_Data psql -U testbruker -d NorthW | tee ./SQL_queries/pris_vs_volum/pris_vs_volum_svar.sql
 
 
-node index.js
+node server.js
