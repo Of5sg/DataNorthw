@@ -27,7 +27,6 @@ app.get("/pris_volum", async (request, response) => {
         console.log(err)
         response.status(500)
     }
-    
 });
 
 app.get("/ansatte", async (request, response) => {
