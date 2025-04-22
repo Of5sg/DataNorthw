@@ -11,6 +11,8 @@ const port = 3000;
 
 await Qs.init();
 
+app.set("json spaces", 2);
+
 app.get("/", async (request, response) => {
     try{
         response.sendFile(path.join(__dirname, "./index.html"));
