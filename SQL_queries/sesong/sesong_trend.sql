@@ -51,7 +51,7 @@
 SELECT
     EXTRACT(YEAR FROM order_date) AS year,
     EXTRACT(QUARTER FROM order_date) AS quarter,
-    ROUND(AVG(quantity)::numeric, 2) AS avg_quantity,
+    ROUND(AVG(quantity)::numeric, 2) AS avg_sales,
     MAX(quantity) AS max_quantity,
     MIN(quantity) AS min_quantity,
     ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 1 THEN quantity END)::numeric, 2) AS jan,
@@ -68,5 +68,5 @@ SELECT
     ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 12 THEN quantity END)::numeric, 2) AS des
 FROM orders
 JOIN order_details ON orders.order_id = order_details.order_id
-GROUP BY EXTRACT(YEAR FROM order_date), EXTRACT(QUARTER FROM order_date)
+GROUP BY year, quarter
 ORDER BY year, quarter;
