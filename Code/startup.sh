@@ -23,5 +23,7 @@ npm install pg
 
 docker container start post_Data
 
-# node index.js
+sleep 0.3
+
+node server.js
 
