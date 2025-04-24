@@ -2,21 +2,21 @@
 
 SELECT
     EXTRACT(YEAR FROM order_date) AS year,
-    product_name, 
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 1 THEN quantity END)::numeric) AS Jan_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 2 THEN quantity END)::numeric) AS Feb_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 3 THEN quantity END)::numeric) AS Mar_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 4 THEN quantity END)::numeric) AS Apr_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 5 THEN quantity END)::numeric) AS Mai_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 6 THEN quantity END)::numeric) AS Jun_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 7 THEN quantity END)::numeric) AS Jul_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 8 THEN quantity END)::numeric) AS Aug_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 9 THEN quantity END)::numeric) AS Sep_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 10 THEN quantity END)::numeric) AS Okt_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 11 THEN quantity END)::numeric) AS Nov_salg,
-    ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 12 THEN quantity END)::numeric) AS Des_salg
+    product_name AS produkt_Salg, 
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 1)) AS Jan,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 2)) AS Feb,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 3)) AS Mar,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 4)) AS Apr,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 5)) AS Mai,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 6)) AS Jun,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 7)) AS Jul,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 8)) AS Aug,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 9)) AS Sep,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 10)) AS Okt,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 11)) AS Nov,
+    ROUND(AVG(quantity) FILTER (WHERE EXTRACT(Month FROM order_date) = 12)) AS Des
 FROM orders 
 JOIN order_details ON orders.order_id = order_details.order_id
 JOIN products ON products.product_id = order_details.product_id
-GROUP BY year, product_name
-ORDER BY product_name, year;
+GROUP BY year, produkt_Salg
+ORDER BY produkt_Salg, year;
