@@ -12,6 +12,7 @@
                 grid-template-areas: 
                     "header header "
                     "nav nav"
+                    "desc desc"
                     "param param"
                     "tabell tabell"
                     "iframe iframe";
@@ -39,6 +40,11 @@
             li {
                 float: left;
                 display: block;
+            }
+
+            article {
+                grid-area: desc;
+                margin-left: 30px;
             }
 
             .knapp {
@@ -86,20 +92,21 @@
         <h1>Datapresentasjon</h1>
         <nav class="nav-header">
             <ul id="knapper">
-                <li><button type="button" name="Pris_Volum" onclick="Klikk('/pris_volum')" class="knapp">Pris/Volum</button></li>
-                <li><button type="button" name="Ansatte" onclick="Klikk('/ansatte')" class="knapp">Ansatte</button></li>
-                <li><button type="button" name="Salg per måned" onclick="Klikk('/maned_salg')" class="knapp">Måned salg</button></li>
-                <li><button type="button" name="Sesong_trend" onclick="Klikk('/sesong_trend')" class="knapp">Sesong trend</button></li>
-                <li><button type="button" name="Leveringstid" onclick="Klikk('/leveringstid')" class="knapp">Leveringstid</button></li>
-                <li><button type="button" name="Snitt verdi" onclick="Klikk('/snitt_verdi')" class="knapp">Snitt verdi</button></li>
-                <li><button type="button" name="Etterspørsel" onclick="Klikk('/ettersporsel')" class="knapp">Etterspørsel</button></li>
-                <li><button type="button" name="Kategorier" onclick="Klikk('/kategorier')" class="knapp">Kategorier</button></li>
-                <li><button type="button" name="Lagerbeholdning" onclick="Klikk('/lagerbeholdning')" class="knapp">Lagerbeholdning</button></li>
-                <li><button type="button" name="Leverandør" onclick="Klikk('/leverandor')" class="knapp">Leverandør</button></li>
-                <li><button type="button" name="Salg" onclick="Klikk('/salg')" class="knapp">Salg</button></li>
-                <li><button type="button" name="Varer" onclick="Klikk('/varer')" class="knapp">Varer</button></li>
+                <li><button type="button" name="Pris_Volum" onclick="Klikk('/pris_volum', `her ser vi om det er ett forhold mellom volum og pris`)" class="knapp">Pris/Volum</button></li>
+                <li><button type="button" name="Ansatte" onclick="Klikk('/ansatte', `her vises ansatte, sortert etter antall salg`)" class="knapp">Ansatte</button></li>
+                <li><button type="button" name="Salg per måned" onclick="Klikk('/maned_salg', `totalt antall salg per måned`)" class="knapp">Måned salg</button></li>
+                <li><button type="button" name="Sesong_trend" onclick="Klikk('/sesong_trend', `gjennomsnitt salg per kvartal, og per måned`)" class="knapp">Sesong trend</button></li>
+                <li><button type="button" name="Leveringstid" onclick="Klikk('/leveringstid', `gjennomsnittlig leveringstid per fraktfirma`)" class="knapp">Leveringstid</button></li>
+                <li><button type="button" name="Snitt verdi" onclick="Klikk('/snitt_verdi', `gjennomsnittlig innkjøpsverdi per kunde`)" class="knapp">Snitt verdi</button></li>
+                <li><button type="button" name="Etterspørsel" onclick="Klikk('/ettersporsel', `produktetterspørsel per måned av hvert år`)" class="knapp">Etterspørsel</button></li>
+                <li><button type="button" name="Kategorier" onclick="Klikk('/kategorier', `antall salg for hver varekategori`)" class="knapp">Kategorier</button></li>
+                <li><button type="button" name="Lagerbeholdning" onclick="Klikk('/lagerbeholdning',`lagerbeholdning`)" class="knapp">Lagerbeholdning</button></li>
+                <li><button type="button" name="Leverandør" onclick="Klikk('/leverandor', `antall varer solgt fra hver leverandør`)" class="knapp">Leverandør</button></li>
+                <li><button type="button" name="Salg" onclick="Klikk('/salg', `Gjennomførte salg`)" class="knapp">Salg</button></li>
+                <li><button type="button" name="Varer" onclick="Klikk('/varer', `Alle tilgjengelige varer`)" class="knapp">Varer</button></li>
             </ul>
         </nav>
+        <article id="beskrivelse"></article>
         <input type="text" id="filterParam" placeholder="filtrer tabell..." onkeyup="filtrerTabell()">
         <!-- <form id="filterParam"></form> -->
         <table id="Tabell">
@@ -204,11 +211,20 @@
             };
 
             // endre begge ved klikk
-            async function Klikk(url){
+            async function Klikk(url, desc){
 
                 // tømme søkefeltet, hver gang  man bytter innholdet i tabellen
                 const param = document.getElementById("filterParam");
                 param.value = "";
+
+                const beskrivelse = document.getElementById("beskrivelse");
+                beskrivelse.innerHTML = "";
+
+                // lage <p> for beskrivelsen
+                const besk = document.createElement("p");
+                besk.textContent = desc;
+
+                beskrivelse.appendChild(besk);
 
                 fetchData(url);
                 changeIframe(url);
