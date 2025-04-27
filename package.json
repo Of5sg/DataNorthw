@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "express": "^4.21.2",
-    "pg": "^8.14.1"
+    "pg": "^8.15.5"
   },
   "name": "datanorthw",
   "version": "1.0.0",

@@ -7,16 +7,18 @@
         <style>
             body {
                 /* background-color: rgb(238, 206, 168); */
-                margin: 0;
+                margin: 0px;
                 display: grid;
                 grid-template-areas: 
                     "header header "
-                    "nav tabell"
-                    "nav iframe";
+                    "nav nav"
+                    "param param"
+                    "tabell tabell"
+                    "iframe iframe";
                 grid-template-rows: 70px auto;
                 grid-template-columns: 200px auto;
                 gap: 20px;
-                height: 99vh;
+                height: auto;
             }
 
             h1 {
@@ -25,19 +27,36 @@
                 justify-content: center;
             }
 
+            .nav-header{
+                grid-area: nav;
+                overflow: scroll;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-snap-type: x mandatory;
+                background-color: lightslategray;
+            }
+
+            li {
+                float: left;
+                display: block;
+            }
+
             .knapp {
-                width: 100%;
-                margin-bottom: 10px;
+                /* width: 100%; */
+                margin-right: 20px;
+                /* float: left; */
             }
 
             #knapper {
-                grid-area: nav;
+                display: flex;
+                list-style: none;
+                white-space: nowrap;
             }
 
             #iframe {
                 margin: 10px;
                 grid-area: iframe;
-                width: 96%;
+                width: 97%;
                 height: 98%;
                 min-height: 400px;
             }
@@ -45,7 +64,7 @@
             #Tabell {
                 margin: 10px;
                 grid-area: tabell;
-                width: 96%;
+                width: 97%;
                 border-collapse: collapse;
             }
 
@@ -55,38 +74,71 @@
                 padding: 8px;
             }
 
+            #filterParam {
+                margin-left: 10px;
+                margin-right: 10px;
+                grid-area: param;
+            }
+
         </style>
     </head>
     <body>
         <h1>Datapresentasjon</h1>
-        <ul id="knapper">
-            <li><button name="Pris_Volum" onclick="Klikk('/pris_volum')" class="knapp">Pris/Volum</button></li>
-            <li><button name="Ansatte" onclick="Klikk('/ansatte')" class="knapp">Ansatte</button></li>
-            <li><button name="Salg per måned" onclick="Klikk('/maned_salg')" class="knapp">Måned salg</button></li>
-            <li><button name="Sesong_trend" onclick="Klikk('/sesong_trend')" class="knapp">Sesong trend</button></li>
-            <li><button name="Leveringstid" onclick="Klikk('/leveringstid')" class="knapp">Leveringstid</button></li>
-            <li><button name="Snitt verdi" onclick="Klikk('/snitt_verdi')" class="knapp">Snitt verdi</button></li>
-            <li><button name="Etterspørsel" onclick="Klikk('/ettersporsel')" class="knapp">Etterspørsel</button></li>
-            <li><button name="Kategorier" onclick="Klikk('/kategorier')" class="knapp">Kategorier</button></li>
-            <li><button name="Lagerbeholdning" onclick="Klikk('/lagerbeholdning')" class="knapp">Lagerbeholdning</button></li>
-            <li><button name="Leverandør" onclick="Klikk('/leverandor')" class="knapp">Leverandør</button></li>
-            <li><button name="Salg" onclick="Klikk('/salg')" class="knapp">Salg</button></li>
-            <li><button name="Varer" onclick="Klikk('/varer')" class="knapp">Varer</button></li>
-        </ul>
+        <nav class="nav-header">
+            <ul id="knapper">
+                <li><button type="button" name="Pris_Volum" onclick="Klikk('/pris_volum')" class="knapp">Pris/Volum</button></li>
+                <li><button type="button" name="Ansatte" onclick="Klikk('/ansatte')" class="knapp">Ansatte</button></li>
+                <li><button type="button" name="Salg per måned" onclick="Klikk('/maned_salg')" class="knapp">Måned salg</button></li>
+                <li><button type="button" name="Sesong_trend" onclick="Klikk('/sesong_trend')" class="knapp">Sesong trend</button></li>
+                <li><button type="button" name="Leveringstid" onclick="Klikk('/leveringstid')" class="knapp">Leveringstid</button></li>
+                <li><button type="button" name="Snitt verdi" onclick="Klikk('/snitt_verdi')" class="knapp">Snitt verdi</button></li>
+                <li><button type="button" name="Etterspørsel" onclick="Klikk('/ettersporsel')" class="knapp">Etterspørsel</button></li>
+                <li><button type="button" name="Kategorier" onclick="Klikk('/kategorier')" class="knapp">Kategorier</button></li>
+                <li><button type="button" name="Lagerbeholdning" onclick="Klikk('/lagerbeholdning')" class="knapp">Lagerbeholdning</button></li>
+                <li><button type="button" name="Leverandør" onclick="Klikk('/leverandor')" class="knapp">Leverandør</button></li>
+                <li><button type="button" name="Salg" onclick="Klikk('/salg')" class="knapp">Salg</button></li>
+                <li><button type="button" name="Varer" onclick="Klikk('/varer')" class="knapp">Varer</button></li>
+            </ul>
+        </nav>
+        <input type="text" id="filterParam" placeholder="filtrer tabell..." onkeyup="filtrerTabell()">
+        <!-- <form id="filterParam"></form> -->
         <table id="Tabell">
             <!-- Dynamisk tabell -->
         </table>
-        <iframe name="Datasett" id="iframe" src="/ansatte"></iframe>
+        <iframe title="Datasett" name="Datasett" id="iframe" src="/ansatte"></iframe>
         <script>
 
+            document.addEventListener("DOMContentLoaded", () => {
+
+                // velge navigerings-stripen, og få den til å scrolle sidelengs, når pekeren er over den
+                const navHeader = document.querySelector(".nav-header");
+
+                navHeader.addEventListener("wheel", function (event) {
+                    
+                    if(event.deltaY !== 0) {
+                        event.preventDefault();
+                        navHeader.scrollLeft += event.deltaY;
+                    };
+
+                });
+
+            });
+
+
+            // grunn-urlen til siden, for bruk i tabell-fetch og iframe
             const urlBase = window.location.origin;
 
+            // endre hvilken data som vises i iframe
             function changeIframe(url){
                 const iframe = document.getElementById("iframe");
                 iframe.src = urlBase + url;
             };
 
+            // endre hvilken data tabellen viser
             async function fetchData(url){
+
+                // sende filtrerings-variabler til serveren, gjennom header
+                // const header = new Headers()
 
                 const tabell = document.getElementById("Tabell");
 
@@ -97,8 +149,11 @@
 
                     //hente data
                     const response = await fetch(urlBase + url);
+                    
                     if (!response.ok) {
+
                         throw new Error("server error: " + response.status);
+                    
                     };
 
                     const data = await response.json();
@@ -127,6 +182,7 @@
                         const rad = document.createElement("tr");
                         
                         columnNames.forEach(column => {
+
                             // td = table data
                             const tabellData = document.createElement("td")
 
@@ -147,10 +203,85 @@
 
             };
 
+            // endre begge ved klikk
             async function Klikk(url){
+
+                // tømme søkefeltet, hver gang  man bytter innholdet i tabellen
+                const param = document.getElementById("filterParam");
+                param.value = "";
+
                 fetchData(url);
                 changeIframe(url);
+
             };
+
+            function filtrerTabell(){
+
+                // velge søkefeltet
+                const input = document.getElementById("filterParam");
+                const filter = input.value.toLowerCase();
+
+                //velge tabellen, og radene i tabellen
+                const table = document.getElementById("Tabell");
+                const rows = table.getElementsByTagName("tr");
+
+                // for hver rad i tabellen, untatt header
+                for (let i = 1; i < rows.length; i++){
+                    const cells = rows[i].getElementsByTagName("td");
+                    let match = false;
+
+                    // for hver celle i raden
+                    for (let y = 0; y < cells.length; y++) {
+                        if (cells[y].textContent.toLowerCase().includes(filter)){
+                            match = true;
+                            break;
+                        };
+                    };
+
+                    rows[i].style.display = match ? "" : "none";
+                };
+
+            };
+
+            // function AnsatteFilter () {
+            //     const parametere = document.getElementById("filterParam");
+                
+            //     // lage inputfelt for fornavn
+            //     const fornavnLabel = document.createElement("label");
+            //     fornavnLabel.setAttribute("for", "fornavn");
+            //     fornavnLabel.textContent = "Fornavn";
+
+            //     const fornavnInput = document.createElement("input");
+            //     fornavnInput.setAttribute("type", "text");
+            //     fornavnInput.setAttribute("id", "fornavn");
+            //     fornavnInput.setAttribute("name", "fornavn");
+                
+            //     // lage inputfelt for etternavn
+            //     const etternavnLabel = document.createElement("label");
+            //     etternavnLabel.setAttribute("for", "etternavn");
+            //     etternavnLabel.textContent = "Etternavn";
+
+            //     const etternavnInput = document.createElement("input");
+            //     etternavnInput.setAttribute("type", "text");
+            //     etternavnInput.setAttribute("id", "etternavn");
+            //     etternavnInput.setAttribute("name", "etternavn");
+
+            //     // feste til form
+            //     parametere.appendChild(fornavnLabel);
+            //     parametere.appendChild(fornavnInput);
+
+            //     parametere.appendChild(etternavnLabel);
+            //     parametere.appendChild(etternavnInput);
+
+            //     const sendParam =  document.createElement("button");
+            //     sendParam.setAttribute("name", "Filtrer");
+            //     sendParam.setAttribute("type", "submit");
+            //     sendParam.setAttribute("onclick", "submit()");
+            //     sendParam.setAttribute("class", "knapp");
+                
+            //     parametere.appendChild(sendParam);
+
+            // };
 
 
         </script>
