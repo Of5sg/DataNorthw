@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
 // grunn-urlen til siden, for bruk i tabell-fetch og iframe
 const urlBase = window.location.origin;
 let currentQuery = "";
@@ -227,8 +226,12 @@ async function Klikk(url, desc){
         AddProductFilter();
     }
 
-    if (url === "leverandor" || url === "/snitt_verdi" || url === "/leveringstid"){
+    if (url === "/leverandor" || url === "/snitt_verdi" || url === "/leveringstid"){
         AddCompanyFilter();
+    }
+
+    if (url === "/kategorier"){
+        AddCategoryFilter();
     }
 
     // legge til knapp for å filtrere
@@ -236,7 +239,7 @@ async function Klikk(url, desc){
     filtKnapp.setAttribute("type", "button");
     filtKnapp.setAttribute("onclick", "fetchFilteredData()");
     filtKnapp.setAttribute("id", "filtreringsknapp");
-    filtKnapp.textContent = "Filtrer";
+    filtKnapp.textContent = "Søk/Filtrer";
 
     filterArea.appendChild(filtKnapp);
 };
@@ -280,7 +283,7 @@ async function AddYearFilter() {
     const label = document.createElement("label");
     label.setAttribute("for", "yearFilt");
     label.setAttribute("class", "filterLabel")
-    label.textContent = "Year";
+    label.textContent = "År";
 
     // lage inputfelt
     const input = document.createElement("input");
@@ -304,7 +307,7 @@ function AddMonthFilter(){
     const monthLabel = document.createElement("label");
     monthLabel.setAttribute("for", "monthFilt");
     monthLabel.setAttribute("class", "filterLabel")
-    monthLabel.textContent = "Month";
+    monthLabel.textContent = "Måned";
 
     // lage inputfelt
     const monthInput = document.createElement("input");
@@ -328,7 +331,7 @@ function AddCompanyFilter(){
     const label = document.createElement("label");
     label.setAttribute("for", "companyFilt");
     label.setAttribute("class", "filterLabel")
-    label.textContent = "Company";
+    label.textContent = "Selskap";
 
     // lage inputfelt
     const input = document.createElement("input");
@@ -352,7 +355,7 @@ function AddProductFilter(){
     const label = document.createElement("label");
     label.setAttribute("for", "productFilt");
     label.setAttribute("class", "filterLabel")
-    label.textContent = "Product Name";
+    label.textContent = "Produktnavn";
 
     // lage inputfelt
     const input = document.createElement("input");
@@ -376,7 +379,7 @@ function AddFirstNameFilter(){
     const label = document.createElement("label");
     label.setAttribute("for", "firstNameFilt");
     label.setAttribute("class", "filterLabel")
-    label.textContent = "First Name";
+    label.textContent = "Fornavn";
 
     // lage inputfelt
     const input = document.createElement("input");
@@ -400,7 +403,7 @@ function AddLastNameFilter(){
     const label = document.createElement("label");
     label.setAttribute("for", "last NameFilt");
     label.setAttribute("class", "filterLabel")
-    label.textContent = "Last Name";
+    label.textContent = "Etternavn";
 
     // lage inputfelt
     const input = document.createElement("input");
@@ -448,7 +451,7 @@ function AddTitleFilter (){
     const label = document.createElement("label");
     label.setAttribute("for", "titleFilt");
     label.setAttribute("class", "filterLabel")
-    label.textContent = "Title";
+    label.textContent = "Tittel";
 
     // lage inputfelt
     const input = document.createElement("input");
@@ -461,3 +464,26 @@ function AddTitleFilter (){
     filterFelt.appendChild(input);
 
 };
+
+function AddCategoryFilter(){
+
+        // filter for kategori
+
+        const filterFelt = document.getElementById("filterArea");
+
+        // lage label
+        const label = document.createElement("label");
+        label.setAttribute("for", "categoryFilt");
+        label.setAttribute("class", "filterLabel")
+        label.textContent = "Kategori";
+    
+        // lage inputfelt
+        const input = document.createElement("input");
+        input.setAttribute("id", "categoryFilt");
+        input.setAttribute("class", "filterInput")
+        input.setAttribute("type", "text");
+    
+        // legge til i dokument
+        filterFelt.appendChild(label);
+        filterFelt.appendChild(input);
+}

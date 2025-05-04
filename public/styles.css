@@ -41,6 +41,10 @@ article {
     margin-left: 30px;
 }
 
+#filterOverskrift {
+    margin-left: 30px;
+}
+
 .knapp {
     /* width: 100%; */
     margin-right: 20px;
@@ -83,7 +87,11 @@ table, th, td {
 
 #filterfelt{
     grid-area: filter;
+}
 
+#filterArea{
+    display: flex;
+    flex-direction: column;
 }
 
 label {
@@ -93,3 +101,4 @@ label {
 #filtreringsknapp {
     margin: 10px;
 }
+
