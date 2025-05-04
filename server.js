@@ -11,6 +11,7 @@ const port = 3000;
 
 await Qs.init();
 
+app.use(express.static(path.join(__dirname, "public")));
 app.set("json spaces", 2);
 
 app.get("/", async (request, response) => {
@@ -23,8 +24,18 @@ app.get("/", async (request, response) => {
 });
 
 app.get("/pris_volum", async (request, response) => {
+
     try{
-      response.send(await Qs.Pris_volum());  
+
+        let {year, month} = request.query;
+
+        year = year ? parseInt(year, 10) : null;
+        month = month ? parseInt(month, 10) : null;
+
+        const result = await Qs.Pris_volum(year, month);
+
+        response.send(result);
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -32,13 +43,19 @@ app.get("/pris_volum", async (request, response) => {
 });
 
 app.get("/ansatte", async (request, response) => {
-    const result = await Qs.Ansatte();
-    // const name = "Margaret Peacock";
-    // const res = result.filter(function (emp) {
-    //     return emp.name == name;
-    // });
+
     try{
+
+        let {year, month, firstname, lastname, id, title} = request.query;
+
+        year = year ? parseInt(year, 10) : null;
+        month = month ? parseInt(month, 10) : null;
+        id = id ? parseInt(id, 10) : null;
+
+        const result = await Qs.Ansatte(year, month, firstname, lastname, id, title);
+
         response.send(result);
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -46,9 +63,20 @@ app.get("/ansatte", async (request, response) => {
 });
 
 app.get("/maned_salg", async (request, response) => {
-    const result = await Qs.Maned_salg()
+
+
+
     try{
-        response.send(result);  
+
+        let {year, month} = request.query;
+
+        year = year ? parseInt(year, 10) : null;
+        month = month ? parseInt(month, 10) : null;
+
+        const result = await Qs.Maned_salg(year, month);
+
+        response.send(result);
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -56,9 +84,17 @@ app.get("/maned_salg", async (request, response) => {
 });
 
 app.get("/sesong_trend", async (request, response) => {
-    const result = await Qs.Sesong_trend()
+
     try{
+
+        let {year} = request.query;
+
+        year = year ? parseInt(year, 10) : null;
+
+        const result = await Qs.Sesong_trend(year);
+
         response.send(result);  
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -66,9 +102,16 @@ app.get("/sesong_trend", async (request, response) => {
 });
 
 app.get("/leveringstid", async (request, response) => {
-    const result = await Qs.Leveringstid()
+
+    
     try{
+
+        const {company} = request.query;
+
+        const result = await Qs.Leveringstid(company);
+
         response.send(result);  
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -76,9 +119,14 @@ app.get("/leveringstid", async (request, response) => {
 });
 
 app.get("/snitt_verdi", async (request, response) => {
-    const result = await Qs.Snitt_verdi()
     try{
-        response.send(result);  
+
+        const {company} = request.query;
+
+        const result = await Qs.Snitt_verdi(company);
+
+        response.send(result);
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -86,9 +134,17 @@ app.get("/snitt_verdi", async (request, response) => {
 });
 
 app.get("/ettersporsel", async (request, response) => {
-    const result = await Qs.Etterspørsel()
+
     try{
+
+        let {year, product} = request.query;
+
+        year = year ? parseInt(year, 10) : null;
+
+        const result = await Qs.Etterspørsel(year, product);
+
         response.send(result);  
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -96,9 +152,13 @@ app.get("/ettersporsel", async (request, response) => {
 });
 
 app.get("/kategorier", async (request, response) => {
-    const result = await Qs.Kategorier()
+
     try{
-        response.send(result);  
+
+        const result = await Qs.Kategorier();
+
+        response.send(result);
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -106,9 +166,14 @@ app.get("/kategorier", async (request, response) => {
 });
 
 app.get("/lagerbeholdning", async (request, response) => {
-    const result = await Qs.Lagerbeholdning()
     try{
-        response.send(result);  
+        
+        const {product} = request.query;
+
+        const result = await Qs.Lagerbeholdning(product);
+
+        response.send(result); 
+
     } catch (err) {
         console.log(err)
         response.status(500)
@@ -116,33 +181,66 @@ app.get("/lagerbeholdning", async (request, response) => {
 });
 
 app.get("/leverandor", async (request, response) => {
-    const result = await Qs.Leverandor()
+
     try{
+
+        let {id} = request.query;
+
+        id = id ? parseInt(id, 10) : null;
+
+        const result = await Qs.Leverandor(id);
+
         response.send(result);  
+
     } catch (err) {
+
         console.log(err)
         response.status(500)
+
     }
 });
 
 app.get("/salg", async (request, response) => {
-    const result = await Qs.Salg()
+
     try{
+
+        let {year, month, id, product} = request.query;
+
+        year = year ? parseInt(year, 10) : null;
+        month = month ? parseInt(month, 10) : null;
+        id = id ? parseInt(id, 10) : null;
+
+        const result = await Qs.Salg(year, month, id, product);
+
         response.send(result);  
+
     } catch (err) {
+
         console.log(err)
         response.status(500)
+
     }
 });
 
 app.get("/varer", async (request, response) => {
-    const result = await Qs.Varer()
+
     try{
+
+        let {id, product} = request.query;
+
+        id = id ? parseInt(id, 10) : null;
+
+        const result = await Qs.Varer(id, product);
+
         response.send(result);  
+
     } catch (err) {
+
         console.log(err)
         response.status(500)
+
     }
+
 });
 
 

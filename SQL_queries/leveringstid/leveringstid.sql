@@ -8,6 +8,7 @@ SELECT
 FROM shippers
 JOIN orders 
     ON ship_via = shipper_id
+WHERE (shippers.company_name LIKE $1 OR $1 = '')
 GROUP BY company_name
 ORDER BY shippers.company_name;
 

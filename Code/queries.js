@@ -25,13 +25,15 @@ Qs.init = async function () {
 
 }
 
-Qs.Pris_volum = async function () {
+Qs.Pris_volum = async function (year, month) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/pris_vs_volum/pris_vs_volum.sql", "utf-8");
     
-    const result = await client.query(Q);
+    const values = [year, month];
+
+    const result = await client.query(Q, values);
 
     client.release();
 
@@ -39,13 +41,15 @@ Qs.Pris_volum = async function () {
 
 };
 
-Qs.Maned_salg = async function () {
+Qs.Maned_salg = async function (year, month) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/maned_salg/maned_salg.sql", "utf-8");
     
-    const result = await client.query(Q);
+    const values = [year, month];
+
+    const result = await client.query(Q, values);
 
     client.release();
 
@@ -53,13 +57,15 @@ Qs.Maned_salg = async function () {
 
 };
 
-Qs.Sesong_trend = async function () {
+Qs.Sesong_trend = async function (year) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/sesong/sesong_trend.sql", "utf-8");
     
-    const result = await client.query(Q);
+    const values = [year];
+
+    const result = await client.query(Q, values);
 
     client.release();
 
@@ -67,13 +73,15 @@ Qs.Sesong_trend = async function () {
 
 };
 
-Qs.Leveringstid = async function () {
+Qs.Leveringstid = async function (company) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/leveringstid/leveringstid.sql", "utf-8");
     
-    const result = await client.query(Q);
+    const values = [company];
+
+    const result = await client.query(Q, values);
 
     client.release();
 
@@ -81,13 +89,15 @@ Qs.Leveringstid = async function () {
 
 };
 
-Qs.Snitt_verdi = async function () {
+Qs.Snitt_verdi = async function (company) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/gj_ordreverdi/gj_ordreverdi.sql", "utf-8");
     
-    const result = await client.query(Q);
+    const values = [company];
+
+    const result = await client.query(Q, values);
 
     client.release();
 
@@ -95,13 +105,15 @@ Qs.Snitt_verdi = async function () {
 
 };
 
-Qs.Etterspørsel = async function () {
+Qs.Etterspørsel = async function (year, product) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/ettersporsel/ettersporsel_trend.sql", "utf-8");
     
-    const result = await client.query(Q);
+    const values = [year, product]
+
+    const result = await client.query(Q, values);
 
     client.release();
 
@@ -109,13 +121,15 @@ Qs.Etterspørsel = async function () {
 
 };
 
-Qs.Ansatte = async function () {
+Qs.Ansatte = async function (year, month, firstname, lastname, id, title) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/ansatte.sql", "utf-8");
 
-    const result = await client.query(Q);
+    const values = [year, month, firstname, lastname, id, title];
+
+    const result = await client.query(Q, values);
     
     client.release();
     
@@ -137,13 +151,15 @@ Qs.Kategorier = async function () {
 
 };
 
-Qs.Lagerbeholdning = async function () {
+Qs.Lagerbeholdning = async function (product) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/lagerbeholdning.sql", "utf-8");
 
-    const result = await client.query(Q);
+    const values = [product];
+
+    const result = await client.query(Q, values);
     
     client.release();
     
@@ -151,13 +167,15 @@ Qs.Lagerbeholdning = async function () {
 
 };
 
-Qs.Leverandor = async function () {
+Qs.Leverandor = async function (id) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/leverandor.sql", "utf-8");
 
-    const result = await client.query(Q);
+    const values = [id];
+
+    const result = await client.query(Q, values);
     
     client.release();
     
@@ -165,13 +183,15 @@ Qs.Leverandor = async function () {
 
 };
 
-Qs.Salg = async function () {
+Qs.Salg = async function (year, month, id, product) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/salg.sql", "utf-8");
 
-    const result = await client.query(Q);
+    const values = [year, month, id, product];
+
+    const result = await client.query(Q, values);
     
     client.release();
     
@@ -179,13 +199,15 @@ Qs.Salg = async function () {
 
 };
 
-Qs.Varer = async function () {
+Qs.Varer = async function (id, product) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/varer.sql", "utf-8");
 
-    const result = await client.query(Q);
+    const values = [id, product];
+
+    const result = await client.query(Q, values);
     
     client.release();
     

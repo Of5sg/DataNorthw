@@ -68,5 +68,6 @@ SELECT
     ROUND(AVG(CASE WHEN EXTRACT(MONTH FROM order_date) = 12 THEN quantity END)::numeric, 2) AS des
 FROM orders
 JOIN order_details ON orders.order_id = order_details.order_id
+WHERE (EXTRACT(YEAR FROM order_date) = $1 OR $1 IS NULL)
 GROUP BY year, quarter
 ORDER BY year, quarter;

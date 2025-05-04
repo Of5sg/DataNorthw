@@ -13,6 +13,8 @@ SELECT
     END AS volum
 FROM order_details
 JOIN orders ON orders.order_id = order_details.order_id
+WHERE (EXTRACT(YEAR FROM order_date) = $1 OR $1 IS NULL)
+    AND (EXTRACT(MONTH FROM order_date) = $2 OR $2 IS NULL)
 GROUP BY year, month
 ORDER BY year, month
 
