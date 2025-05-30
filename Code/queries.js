@@ -137,13 +137,15 @@ Qs.Ansatte = async function (year, month, firstname, lastname, id, title) {
 
 };
 
-Qs.Kategorier = async function () {
+Qs.Kategorier = async function (category) {
 
     const client = await Qs.pool.connect();
 
     const Q = await fs.readFile("./SQL_queries/kategorier.sql", "utf-8");
 
-    const result = await client.query(Q);
+    const values = [category];
+
+    const result = await client.query(Q, values);
     
     client.release();
     
