@@ -10,7 +10,7 @@ const options = {
     key: readFileSync("private-key.pem"),
     cert: readFileSync("sertifikat.pem"),
 
-    //setter default seclevel til 4, 192 bit security level.
+    // her settes default seclevel til 4
     // det krever rsa-nøkkel på 7680-bit
     ciphers: "DEFAULT@SECLEVEL=4",
 
@@ -29,19 +29,17 @@ const options = {
 
 const server = https.createServer(options)
 
-
 server.on("connection", () => {
     console.log("ny tilkobling, begynner TLS handshake")
 });
 
 // server.on("tlsClientError", (exception, tlsSocket) => {
 //     console.log("Error before secure connection was established, on:\n\t", tlsSocket, "\n\nException:\n", exception);
-// })
+// });
 
 // server.on("secureConnection", (tlsSocket) => {
 //     console.log("secure connection on", tlsSocket, "\n\tTLS handshake completed")
 // });
-
 
 server.on("request", (request, response) => {
 
@@ -89,8 +87,8 @@ server.on("request", (request, response) => {
         // response.setHeader()
         // response.getHeader()
         response.setHeader("Content-Type", "text/html");
-        response.setHeader("Content-Length", Buffer.byteLength(body))
-        response.setHeader("Content-Security-Policy", `script-src "nonce-${nonce}" "strict-dynamic";`)
+        response.setHeader("Content-Length", Buffer.byteLength(body));
+        response.setHeader("Content-Security-Policy", `script-src "nonce-${nonce}" "strict-dynamic";`);
 
         response.writeHead(200);
 
@@ -107,7 +105,7 @@ server.on("request", (request, response) => {
     };
 
     request.on("error", err => {
-        console.error(err.cause, "\n\n", err.stack, "\n")
+        console.error("\n\n", err.cause, "\n\n", err.stack, "\n\n");
     });
     
 });

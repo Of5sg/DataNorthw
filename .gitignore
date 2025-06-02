@@ -2,3 +2,6 @@ node_modules
 /northwind.sql
 /notat.txt
 /plan.txt
+/certificate.pem
+/private-key.pem
+/sertifikat.pem
