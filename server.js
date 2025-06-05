@@ -2,6 +2,10 @@ import Qs from "./Code/queries.js";
 import express from "express";
 import { fileURLToPath } from "url";
 import path from "path";
+import helmet from "helmet";
+import fs from "fs";
+import https from "https";
+import crypto from "crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,12 +15,50 @@ const port = 3000;
 
 await Qs.init();
 
+// const tlsOptions = {
+
+//     // henter key og cert
+//     key: fs.readFileSync("./private-key.pem"),
+//     cert: fs.readFileSync("./sertifikat.pem"),
+
+//     // ALPN(application-layer protocol negotiation) HTTP/2: 0x68 0x32 ("h2"), HTTP/3: 0x68 0x33 ("h3")
+//     ALPNProtocols: ["h3", "h2"],
+
+//     // laveste godtatte TLS-versjon
+//     minVersion: "TLSv1.2"
+
+// }
+
+// app.use((req, res, next) => {
+//     // vurdere om jeg skal bruke hex eller base64
+//     res.locals.cspNonce = crypto.randomBytes(32).toString("base64");
+//     next();
+// });
+
+// app.use(helmet({
+//     contentSecurityPolicy: {
+//         directives: {
+//             scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.cspNonce}`],
+//         },
+//     },
+// }));
+
+app.use(express.json());
+// app.use(helmet.hsts({maxAge: 300, includeSubDomains: true, preload: true}))
+
 app.use(express.static(path.join(__dirname, "public")));
 app.set("json spaces", 2);
 
+// app.use((request, response, next) => {
+//     if(!request.secure) {
+//         return response.redirect(`https://${request.headers.host}${request.url}`);
+//     };
+//     next();
+// });
+
 app.get("/", async (request, response) => {
     try{
-        response.sendFile(path.join(__dirname, "./index.html"));
+        response.sendFile(path.join(__dirname, "index.html"));
     } catch (err) {
         console.error(err);
         response.status(500);
@@ -63,8 +105,6 @@ app.get("/ansatte", async (request, response) => {
 });
 
 app.get("/maned_salg", async (request, response) => {
-
-
 
     try{
 
@@ -155,7 +195,9 @@ app.get("/kategorier", async (request, response) => {
 
     try{
 
-        const result = await Qs.Kategorier();
+        let {category} = request.query;
+
+        const result = await Qs.Kategorier(category);
 
         response.send(result);
 
@@ -261,8 +303,34 @@ app.get("/varer", async (request, response) => {
 
 
 
+// ----- http-server, flere andre ting må modifiseres for å bruke
 
-
-app.listen(port, () => {
-    console.log("app startet på port:", port);
+const httpServ = app.listen(port, () => {
+    console.log("\n\thttp-server startet på port:", port);
 });
+
+process.on("SIGINT", () => {
+    console.log("\n\tSlår av server...");
+    httpServ.close(() => {
+        console.log("\n\thttp-server avsluttet");
+        process.exit(0);
+    });
+});
+
+
+// ----- https-server
+
+// const server = https.createServer(tlsOptions, app).listen(port, () => {
+//     console.log("\n\thttps-server kjører på port ", port);
+// });
+
+// process.on("SIGINT", () => {
+//     console.log("\n\tSlår av server...");
+//     server.close(() => {
+//         console.log("\n\thttps-server avsluttet");
+//         process.exit(0);
+//     });
+// });
+
+
+

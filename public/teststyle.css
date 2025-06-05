@@ -1,0 +1,51 @@
+body{
+    margin: 10px;
+    display: grid;
+    grid-template-areas:  
+        "header header"
+        "nav tabell"
+        "nav2 tabell"
+        "nav3 tabell";
+    grid-template-columns: 250px 1fr;
+}
+
+header{
+    grid-area: header;
+    text-align: center;
+    font-weight: bold;
+}
+
+#menu{
+    grid-area:nav;
+}
+
+.menu_button {
+    margin: 5px;
+    padding: 5px;
+    min-width: 150px;
+}
+
+.searchbar{
+    grid-area: nav2;
+    padding: 5px;
+    margin: 15px;
+    ;
+}
+
+#filtere {
+    margin: 10px;
+    grid-area: nav3;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.filterlabel {
+    grid-column: 1;
+}
+
+.filterinput {
+    grid-column: 2;
+    width: 100%;
+} 

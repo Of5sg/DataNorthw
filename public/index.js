@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navHeader.addEventListener("wheel", function (event) {
         
         if(event.deltaY !== 0) {
-            event.preventDefault();
+            event.preventDefault(); 
             navHeader.scrollLeft += event.deltaY;
         };
 
@@ -103,6 +103,9 @@ async function fetchFilteredData() {
     const productElement = document.getElementById("productFilt");
     const productFilter = productElement ? productElement.value : null;
 
+    const categoryElement = document.getElementById("categoryFilt");
+    const categoryFilter = categoryElement ? categoryElement.value : null;
+
 
     const queryParams = new URLSearchParams();
 
@@ -115,6 +118,7 @@ async function fetchFilteredData() {
     if (companyFilter !== null) queryParams.append("company", companyFilter);
     if (titleFilter !== null) queryParams.append("title", titleFilter);
     if (productFilter !== null) queryParams.append("product", productFilter);
+    if (categoryFilter !== null) queryParams.append("category", categoryFilter);
 
 
     //slette alt i tabellen

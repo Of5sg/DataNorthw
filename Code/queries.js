@@ -132,9 +132,8 @@ Qs.Ansatte = async function (year, month, firstname, lastname, id, title) {
     const result = await client.query(Q, values);
     
     client.release();
-    
-    return result.rows;
 
+    return result.rows;
 };
 
 Qs.Kategorier = async function (category) {

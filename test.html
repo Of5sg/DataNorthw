@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="nb-no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <base>
+        <script nonce="{nonce}">
+            const baseUrl = window.location.origin;
+            const baseElement = document.getElementsByTagName("base")[0];
+            baseElement.href = baseUrl;
+        </script>
+        <title>Northwind</title>
+        <link rel="stylesheet" href="teststyle.css">
+    </head>
+    <body>
+        <header>
+            <h1>Northwind</h1>
+        </header>
+        <menu id="menu">
+            <li><button name="ansatte" class="menu_button" nonce="{nonce}" id="ansatte_button">Ansatte</button></li>
+            <li><button name="volum" class="menu_button" nonce="{nonce}" id="volum_button">Pris/volum</button></li>
+            <li><button name="maned_salg" class="menu_button" nonce="{nonce}" id="salg_maned_button">Salg per månede</button></li>
+            <li><button name="sesong" class="menu_button" nonce="{nonce}" id="sesong_button">Sesong_trend</button></li>
+            <li><button name="leveringstid" class="menu_button" nonce="{nonce}" id="leveringstid_button">Leveringstid</button></li>
+            <li><button name="verdi" class="menu_button" nonce="{nonce}" id="snitt-verdi_button">Snitt verdi</button></li>
+            <li><button name="ettersporsel" class="menu_button" nonce="{nonce}" id="ettersporsel_button">Etterspørsel</button></li>
+            <li><button name="kategorier" class="menu_button" nonce="{nonce}" id="kategorier_button">Kategorier</button></li>
+            <li><button name="lagerbeholdning" class="menu_button" nonce="{nonce}" id="lagerbeholdning_button">Lagerbeholdning</button></li>
+            <li><button name="leverandor" class="menu_button" nonce="{nonce}" id="leverandor_button">leverandør</button></li>
+            <li><button name="salg" class="menu_button" nonce="{nonce}" id="salg_button">Salg</button></li>
+            <li><button name="varer" class="menu_button" nonce="{nonce}" id="varer_button">Varer</button></li>
+        </menu>
+
+        <search class="searchbar" id="localsearch">
+            <input placeholder="søk i tabell..." type="text" id="searchInput">
+        </search>
+
+        <form action="" method="get" id="filtere">
+            <label class="filterlabel" id="year">År</label>
+            <input id="year" type="date" class="filterinput filteryear">
+            <label class="filterlabel" for="month">Måned</label>
+            <input id="month" type="month" class="filterinput filtermonth">
+            <label class="filterlabel" for="firstname">Fornavn</label>
+            <input id="firstname" type="text" class="filterinput filterfornanvn">
+            <label class="filterlabel" for="lastname">Etternavn</label>
+            <input id="lastname" type="text" class="filterinput filteretternavn">
+            <label class="filterlabel" for="id">ID</label>
+            <input id="id" type="number" class="filterinput filterid">
+            <label class="filterlabel" for="company">Selskap</label>
+            <input id="company" type="text" class="filterinput filtercompany">
+            <label class="filterlabel" for="title">Tittel</label>
+            <input id="title" type="text" class="filterinput filtertittel">
+            <label class="filterlabel" for="product">Produkt</label>
+            <input id="product" type="text" class="filterinput filterprodukt">
+            <label class="filterlabel" for="category">Kategori</label>
+            <input id="category" type="text" class="filterinput filtercategory">
+            <input type="submit" value="Submit" id="filterSubmit">
+        </form>
+
+        <table id="Tabell">
+            <!-- her kommer tabellen, dynamisk -->
+        </table>
+        <script nonce="{nonce}">
+            
+            document.addEventListener("DOMContentLoaded", () => {
+
+                document.getElementById("searchInput").addEventListener("keyup", searchTable());
+
+                // Henter data fra server og lager tabell
+                document.getElementById("filtere").addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    fetchFilteredData();
+                });
+
+                const menuButtons = document.querySelectorAll(".menu_button");
+
+                const urlBase = window.location.origin;
+
+                let currentQuery = "";
+
+                //legge til event listeners for hver knapp i menyen
+                menuButtons.forEach(button => {
+                    button.addEventListener("click", () => {
+                        currentQuery = button.name;
+                        fetchFilteredData();
+                    });
+                });
+
+                function searchTable(){
+
+                    // velge søkefeltet
+                    const input = document.getElementById("localsearch").querySelector("input");
+                    const filter = input.value.toLowerCase();
+
+                    //velge tabellen, og radene i tabellen
+                    const table = document.getElementById("Tabell");
+                    const rows = table.getElementsByTagName("tr");
+
+                    // for hver rad i tabellen, untatt header
+                    for (let i = 1; i < rows.length; i++){
+                        const cells = rows[i].getElementsByTagName("td");
+                        let match = false;
+
+                        // for hver celle i raden
+                        for (let y = 0; y < cells.length; y++) {
+                            if (cells[y].textContent.toLowerCase().includes(filter)){
+                                match = true;
+                                break;
+                            };
+                        };
+
+                    // skjule/vise basert på om en rad i cellen matcher
+                        rows[i].style.display = match ? "" : "none";
+                    };
+
+                };
+
+
+                // lager en tabell basert på data
+
+                function createTable(data){
+
+                    const tabell = document.getElementById("Tabell");
+
+                    //slette alt i tabellen
+                    tabell.innerHTML = "";
+
+                    //bruke keys som kolonner
+                    const columnNames = Object.keys(data[0]);
+
+                    // tr = table row
+                    const headerRow = document.createElement("tr");
+
+                    columnNames.forEach(column => {
+
+                        // th = table header
+                        const tabellHeader = document.createElement("th");
+
+                        tabellHeader.innerText = column;
+                        headerRow.appendChild(tabellHeader);
+
+                    });
+
+                    tabell.appendChild(headerRow);
+
+                    // lage rader av dataen
+                    data.forEach(item => {
+
+                        const rad = document.createElement("tr");
+                        
+                        columnNames.forEach(column => {
+
+                            // td = table data
+                            const tabellData = document.createElement("td")
+
+                            tabellData.innerText = item[column] || "";
+                            rad.appendChild(tabellData);
+
+                        });
+
+                        tabell.appendChild(rad);
+
+                    });
+                    
+                };
+
+                async function fetchFilteredData() {
+
+                    const tabell = document.getElementById("Tabell");
+
+                    //sjekke at elementene eksisterer, og hvis ikke, sette variablene til tomme strenger
+                    const yearElement = document.getElementById("filteryear");
+                    const yearFilter = yearElement ? yearElement.value : null;
+
+                    const monthElement = document.getElementById("filtermonth");
+                    const monthFilter = monthElement ? monthElement.value : null;
+
+                    const firstNameElement = document.getElementById("filterfornanvn");
+                    const firstNameFilter = firstNameElement ? firstNameElement.value : null;
+
+                    const lastNameElement = document.getElementById("filteretternavn");
+                    const lastNameFilter = lastNameElement ? lastNameElement.value : null;
+
+                    const iDElement = document.getElementById("filterid");
+                    const iDFilter = iDElement ? iDElement.value : null;
+
+                    const companyElement = document.getElementById("filtercompany");
+                    const companyFilter = companyElement ? companyElement.value : null;
+
+                    const titleElement = document.getElementById("filtertittel");
+                    const titleFilter = titleElement ? titleElement.value : null;
+
+                    const productElement = document.getElementById("filterprodukt");
+                    const productFilter = productElement ? productElement.value : null;
+
+                    const categoryElement = document.getElementById("filtercategory");
+                    const categoryFilter = categoryElement ? categoryElement.value : null;
+
+
+                    const queryParams = new URLSearchParams();
+
+                    // legge til parameterene, hvis elementet eksisterer på siden.
+                    if (yearFilter !== null) queryParams.append("year", yearFilter);
+                    if (monthFilter !== null) queryParams.append("month", monthFilter);
+                    if (firstNameFilter !== null) queryParams.append("firstname", firstNameFilter);
+                    if (lastNameFilter !== null) queryParams.append("lastname", lastNameFilter);
+                    if (iDFilter !== null) queryParams.append("id", iDFilter);
+                    if (companyFilter !== null) queryParams.append("company", companyFilter);
+                    if (titleFilter !== null) queryParams.append("title", titleFilter);
+                    if (productFilter !== null) queryParams.append("product", productFilter);
+                    if (categoryFilter !== null) queryParams.append("category", categoryFilter);
+
+
+                    //slette alt i tabellen
+                    tabell.innerHTML = "";
+
+                    const fullUrl = `${urlBase}/${currentQuery}?${queryParams.toString()}`;
+
+                    console.log("her er full url", fullUrl);
+
+                    try{
+
+                        //hente data
+                        const response = await fetch(fullUrl, {
+                            "method": "GET",
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error("server error: " + response.status);
+                        };
+
+                        const data = await response.json();
+
+                        createTable(data);
+
+
+                    }catch (error){
+
+                        console.error("Error fetching data:", error);
+
+                    }; 
+                };
+            });
+
+        </script>
+    </body>
+</html>
