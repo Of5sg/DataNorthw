@@ -32,18 +32,18 @@ const server = https.createServer(options)
 //     console.log("connect request mottatt, metode:", request.method);
 // });
 
-// server.on("connection", (socket) => {
+server.on("connection", (socket) => {
 //     console.log("ny tilkobling, begynner TLS handshake")
 //     console.log("socket remodeAddress:", socket.remoteAddress);
 //     console.log("socket remotePort:", socket.remotePort);
-//     console.log("socket localAddress:", socket.localAddress);
+    console.log("socket localAddress:", socket.localAddress);
 //     console.log("socket localPort:", socket.localPort);
 
-// });
+});
 
-// server.on("tlsClientError", (exception, tlsSocket) => {
-//     console.log("Error before secure connection was established, on:\n\t", tlsSocket, "\n\nException:\n", exception);
-// });
+server.on("tlsClientError", (exception, tlsSocket) => {
+    console.log("Error before secure connection was established, on:\n\t", tlsSocket, "\n\nException:\n", exception);
+});
 
 // server.on("secureConnection", (tlsSocket) => {
 //     console.log("secure connection on:", tlsSocket.remoteAddress, "\n\tTLS handshake completed")
@@ -243,17 +243,17 @@ server.on("request", async (request, response) => {
         response.end("426 - Upgrade Required");
     };
 
-    // request.on("close", () => {
+    request.on("close", () => {
 
-    //     console.log("klienten avsluttet tilkoblingen");
+        console.log("klienten avsluttet tilkobling");
 
-    // })
+    })
 
-    // request.on("error", err => {
+    request.on("error", err => {
 
-    //     console.error("\n\n", err.cause, "\n\n", err.stack, "\n\n");
+        console.error("\n\n", err.cause, "\n\n", err.stack, "\n\n");
 
-    // });
+    });
     
 });
 
