@@ -182,7 +182,7 @@ server.on("request", async (request, response) => {
 
             // path for å hente data om ansatte
 
-            const params = new URL(request.url, `https://${request.headers.host}`).searchParams;
+            const params = url.searchParams;
 
             try{
 
@@ -206,7 +206,28 @@ server.on("request", async (request, response) => {
                 response.end("500 - Internal Server Error");
             };
 
-        };
+        }else if(request.method === "GET" && url.pathname === "/volum"){
+            
+            // path for å hente data om pris og volum
+
+            const params = url.searchParams;
+
+            try{
+
+                const year = params.has("year") ? parseInt(params.get("year"), 10) : null;
+                const month = params.has("month") ? parseInt(params.get("month"), 10) : null;
+
+                const result = JSON.stringify(await Qs.Pris_volum(year, month));
+
+                response.setHeader("Content-Type", "application/json");
+                response.writeHead(200)
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.end("500 - Internal Server Error");
+            };
+        }
 
 
 
