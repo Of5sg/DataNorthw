@@ -38,4 +38,4 @@ openssl x509 -req -in certificate-signing-req.pem -signkey private-key.pem -out 
 
 sleep 0.3
 
-node server.js
+node https_server.js
