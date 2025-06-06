@@ -188,12 +188,27 @@ server.on("request", async (request, response) => {
 
                 console.log(params);
 
-                const year = params.has("year") ? parseInt(params.get("year"), 10) : null;
-                const month = params.has("month") ? parseInt(params.get("month"), 10) : null;
+                const yearstr = params.get("year")
+                const year = yearstr && yearstr !== "undefined" && yearstr !== "" ? parseInt(params.get("year"), 10) : null;
+                
+                const monthstr = params.get("month")
+                const month = monthstr && monthstr !== "undefined" && monthstr !== "" ? parseInt(params.get("month"), 10) : null;
+                
                 const firstname = params.get("firstname") || "";
+                
                 const lastname = params.get("lastname") || "";
-                const id = params.has("id") ? parseInt(params.get("id"), 10) : null;
+
+                const idstr = params.get("id")
+                const id = idstr && idstr !== "undefined" && idstr !== "" ? parseInt(params.get("month"), 10) : null;
+                
                 const title = params.get("title") || "";
+
+                console.log(year, "year")
+                console.log(month, "month")
+                console.log(firstname, "firstname")
+                console.log(lastname, "lastname")
+                console.log(id, "id")
+                console.log(title, "title")
 
                 const result = JSON.stringify(await Qs.Ansatte(year, month, firstname, lastname, id, title));
 
@@ -203,6 +218,7 @@ server.on("request", async (request, response) => {
         
             } catch (err) {
                 console.log(err)
+                response.writeHead(500);
                 response.end("500 - Internal Server Error");
             };
 
@@ -214,9 +230,12 @@ server.on("request", async (request, response) => {
 
             try{
 
-                const year = params.has("year") ? parseInt(params.get("year"), 10) : null;
-                const month = params.has("month") ? parseInt(params.get("month"), 10) : null;
-
+                const yearstr = params.get("year")
+                const year = yearstr && yearstr !== "undefined" && yearstr !== "" ? parseInt(params.get("year"), 10) : null;
+                
+                const monthstr = params.get("month")
+                const month = monthstr && monthstr !== "undefined" && monthstr !== "" ? parseInt(params.get("month"), 10) : null;
+                
                 const result = JSON.stringify(await Qs.Pris_volum(year, month));
 
                 response.setHeader("Content-Type", "application/json");
@@ -225,9 +244,220 @@ server.on("request", async (request, response) => {
         
             } catch (err) {
                 console.log(err)
+                response.writeHead(500);
                 response.end("500 - Internal Server Error");
             };
-        }
+
+        }else if(request.method === "GET" && url.pathname === "/maned_salg"){
+
+            const params = url.searchParams;
+
+            try{
+
+                const yearstr = params.get("year")
+                const year = yearstr && yearstr !== "undefined" && yearstr !== "" ? parseInt(params.get("year"), 10) : null;
+                
+                const monthstr = params.get("month")
+                const month = monthstr && monthstr !== "undefined" && monthstr !== "" ? parseInt(params.get("month"), 10) : null;
+                
+                const result = JSON.stringify(await Qs.Maned_salg(year, month));
+                
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else if(request.method === "GET" && url.pathname === "/sesong"){
+            const params = url.searchParams;
+            try{
+
+                const yearstr = params.get("year")
+                const year = yearstr && yearstr !== "undefined" && yearstr !== "" ? parseInt(params.get("year"), 10) : null;
+
+                const result = JSON.stringify(await Qs.Sesong_trend(year));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else if(request.method === "GET" && url.pathname === "/leveringstid"){
+            const params = url.searchParams;
+            try{
+
+                const company = params.get("company") || "";
+        
+                const result = JSON.stringify(await Qs.Leveringstid(company));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else if(request.method === "GET" && url.pathname === "/verdi"){
+            const params = url.searchParams;
+            try{
+        
+                const company = params.get("company") || "";
+        
+                const result = JSON.stringify(await Qs.Snitt_verdi(company));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else if(request.method === "GET" && url.pathname === "/ettersporsel"){
+            const params = url.searchParams;
+            try{
+        
+
+                const yearstr = params.get("year")
+                const year = yearstr && yearstr !== "undefined" && yearstr !== "" ? parseInt(params.get("year"), 10) : null;
+
+                const product = params.get("product") || "";
+
+                const result = JSON.stringify(await Qs.Etterspørsel(year, product));
+
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);  
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else if(request.method === "GET" && url.pathname === "/kategorier"){
+            const params = url.searchParams;
+            try{
+                
+                const category = params.get("category") || "";
+
+                const result = JSON.stringify(await Qs.Kategorier(category));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+        }else if(request.method === "GET" && url.pathname === "/lagerbeholdning"){
+            const params = url.searchParams;
+            try{
+
+                const product = params.get("product") || "";
+        
+                const result = JSON.stringify(await Qs.Lagerbeholdning(product));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+        }else if(request.method === "GET" && url.pathname === "/leverandor"){
+            const params = url.searchParams;
+            try{
+
+                const idstr = params.get("id")
+                const id = idstr && idstr !== "undefined" && idstr !== "" ? parseInt(params.get("month"), 10) : null;
+              
+                const result = JSON.stringify(await Qs.Leverandor(id));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else if(request.method === "GET" && url.pathname === "/salg"){
+            const params = url.searchParams;
+            try{
+
+
+                const yearstr = params.get("year")
+                const year = yearstr && yearstr !== "undefined" && yearstr !== "" ? parseInt(params.get("year"), 10) : null;
+                
+                const monthstr = params.get("month")
+                const month = monthstr && monthstr !== "undefined" && monthstr !== "" ? parseInt(params.get("month"), 10) : null;
+                
+                const idstr = params.get("id")
+                const id = idstr && idstr !== "undefined" && idstr !== "" ? parseInt(params.get("month"), 10) : null;
+                
+                const product = params.get("product") || "";
+
+                const result = JSON.stringify(await Qs.Salg(year, month, id, product));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else if(request.method === "GET" && url.pathname === "/varer"){
+            const params = url.searchParams;
+            try{
+        
+                const idstr = params.get("id")
+                const id = idstr && idstr !== "undefined" && idstr !== "" ? parseInt(params.get("month"), 10) : null;
+              
+                const product = params.get("product") || "";
+        
+                const result = JSON.stringify(await Qs.Varer(id, product));
+        
+                response.setHeader("Content-Type", "application/jason");
+                response.writeHead(200);
+                response.end(result);
+        
+            } catch (err) {
+                console.log(err)
+                response.writeHead(500);
+                response.end("500 - Internal Server Error");
+            };
+
+        }else{
+
+            response.setHeader("Content-Type", "text/plain");
+            response.writeHead(404);
+            response.end("404 - not found");
+
+        };
 
 
 

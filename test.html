@@ -17,6 +17,7 @@
             <h1>Northwind</h1>
         </header>
         <menu id="menu">
+            
             <li><button name="ansatte" class="menu_button" nonce="{nonce}" id="ansatte_button">Ansatte</button></li>
             <li><button name="volum" class="menu_button" nonce="{nonce}" id="volum_button">Pris/volum</button></li>
             <li><button name="maned_salg" class="menu_button" nonce="{nonce}" id="salg_maned_button">Salg per månede</button></li>
@@ -29,33 +30,35 @@
             <li><button name="leverandor" class="menu_button" nonce="{nonce}" id="leverandor_button">leverandør</button></li>
             <li><button name="salg" class="menu_button" nonce="{nonce}" id="salg_button">Salg</button></li>
             <li><button name="varer" class="menu_button" nonce="{nonce}" id="varer_button">Varer</button></li>
+
+            <search class="searchbar" id="localsearch">
+                <input placeholder="søk i tabell..." type="text" id="searchInput">
+            </search>
+
+            <form action="" method="get" id="filtere">
+                <label class="filterlabel" for="year">År</label>
+                <input id="year" type="text" class="filterinput filteryear">
+                <label class="filterlabel" for="month">Måned</label>
+                <input id="month" type="text" class="filterinput filtermonth">
+                <label class="filterlabel" for="firstname">Fornavn</label>
+                <input id="firstname" type="text" class="filterinput filterfornanvn">
+                <label class="filterlabel" for="lastname">Etternavn</label>
+                <input id="lastname" type="text" class="filterinput filteretternavn">
+                <label class="filterlabel" for="id">ID</label>
+                <input id="id" type="number" class="filterinput filterid">
+                <label class="filterlabel" for="company">Selskap</label>
+                <input id="company" type="text" class="filterinput filtercompany">
+                <label class="filterlabel" for="title">Tittel</label>
+                <input id="title" type="text" class="filterinput filtertittel">
+                <label class="filterlabel" for="product">Produkt</label>
+                <input id="product" type="text" class="filterinput filterprodukt">
+                <label class="filterlabel" for="category">Kategori</label>
+                <input id="category" type="text" class="filterinput filtercategory">
+                <input type="submit" value="Submit" id="filterSubmit">
+            </form>
+
         </menu>
 
-        <search class="searchbar" id="localsearch">
-            <input placeholder="søk i tabell..." type="text" id="searchInput">
-        </search>
-
-        <form action="" method="get" id="filtere">
-            <label class="filterlabel" id="year">År</label>
-            <input id="year" type="date" class="filterinput filteryear">
-            <label class="filterlabel" for="month">Måned</label>
-            <input id="month" type="month" class="filterinput filtermonth">
-            <label class="filterlabel" for="firstname">Fornavn</label>
-            <input id="firstname" type="text" class="filterinput filterfornanvn">
-            <label class="filterlabel" for="lastname">Etternavn</label>
-            <input id="lastname" type="text" class="filterinput filteretternavn">
-            <label class="filterlabel" for="id">ID</label>
-            <input id="id" type="number" class="filterinput filterid">
-            <label class="filterlabel" for="company">Selskap</label>
-            <input id="company" type="text" class="filterinput filtercompany">
-            <label class="filterlabel" for="title">Tittel</label>
-            <input id="title" type="text" class="filterinput filtertittel">
-            <label class="filterlabel" for="product">Produkt</label>
-            <input id="product" type="text" class="filterinput filterprodukt">
-            <label class="filterlabel" for="category">Kategori</label>
-            <input id="category" type="text" class="filterinput filtercategory">
-            <input type="submit" value="Submit" id="filterSubmit">
-        </form>
 
         <table id="Tabell">
             <!-- her kommer tabellen, dynamisk -->
@@ -64,7 +67,7 @@
             
             document.addEventListener("DOMContentLoaded", () => {
 
-                document.getElementById("searchInput").addEventListener("keyup", searchTable());
+                document.getElementById("searchInput").addEventListener("keyup", searchTable);
 
                 // Henter data fra server og lager tabell
                 document.getElementById("filtere").addEventListener("submit", (event) => {
@@ -82,6 +85,7 @@
                 menuButtons.forEach(button => {
                     button.addEventListener("click", () => {
                         currentQuery = button.name;
+                        document.getElementById("filtere").reset();                        
                         fetchFilteredData();
                     });
                 });
@@ -125,8 +129,17 @@
                     //slette alt i tabellen
                     tabell.innerHTML = "";
 
+                    console.log(data)
+
+                    let columnNames = {};
                     //bruke keys som kolonner
-                    const columnNames = Object.keys(data[0]);
+                    try{
+                        columnNames = Object.keys(data[0]);  
+                    }catch(error){
+                        console.log(error);
+                        return;
+                    }
+                    
 
                     // tr = table row
                     const headerRow = document.createElement("tr");
@@ -169,33 +182,33 @@
                     const tabell = document.getElementById("Tabell");
 
                     //sjekke at elementene eksisterer, og hvis ikke, sette variablene til tomme strenger
-                    const yearElement = document.getElementById("filteryear");
+                    const yearElement = document.getElementById("year");
                     const yearFilter = yearElement ? yearElement.value : null;
-
-                    const monthElement = document.getElementById("filtermonth");
+                    console.log(yearFilter)
+                    const monthElement = document.getElementById("month");
                     const monthFilter = monthElement ? monthElement.value : null;
-
-                    const firstNameElement = document.getElementById("filterfornanvn");
+                    console.log(monthFilter)
+                    const firstNameElement = document.getElementById("firstname");
                     const firstNameFilter = firstNameElement ? firstNameElement.value : null;
-
-                    const lastNameElement = document.getElementById("filteretternavn");
+                    console.log(firstNameFilter)
+                    const lastNameElement = document.getElementById("lastname");
                     const lastNameFilter = lastNameElement ? lastNameElement.value : null;
-
-                    const iDElement = document.getElementById("filterid");
+                    console.log(lastNameFilter)
+                    const iDElement = document.getElementById("id");
                     const iDFilter = iDElement ? iDElement.value : null;
-
-                    const companyElement = document.getElementById("filtercompany");
+                    console.log(iDFilter)
+                    const companyElement = document.getElementById("company");
                     const companyFilter = companyElement ? companyElement.value : null;
-
-                    const titleElement = document.getElementById("filtertittel");
+                    console.log(companyFilter)
+                    const titleElement = document.getElementById("title");
                     const titleFilter = titleElement ? titleElement.value : null;
-
-                    const productElement = document.getElementById("filterprodukt");
+                    console.log(titleFilter)
+                    const productElement = document.getElementById("product");
                     const productFilter = productElement ? productElement.value : null;
-
-                    const categoryElement = document.getElementById("filtercategory");
+                    console.log(productFilter)
+                    const categoryElement = document.getElementById("category");
                     const categoryFilter = categoryElement ? categoryElement.value : null;
-
+                    console.log(categoryFilter)
 
                     const queryParams = new URLSearchParams();
 
